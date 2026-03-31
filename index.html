@@ -1,0 +1,1630 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Langit Langit.id | Architecture & Interior Design</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Configuration (Original Colors) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: "#135A86",
+                tan: "#DBBFA0",
+                yellow: "#FED818",
+                cream: "#FFFD5F",
+                dark: "#363430",
+                light: "#FAFAFA",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #fafafa;
+        color: #363430;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .glass-nav {
+        background: rgba(250, 250, 250, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(219, 191, 160, 0.2);
+      }
+
+      /* Advanced Smooth Image Loading */
+      img.lazy-observe {
+        opacity: 0;
+        filter: blur(15px) brightness(1.1);
+        transform: scale(1.05);
+        transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      img.lazy-loaded {
+        opacity: 1;
+        filter: blur(0) brightness(1);
+        transform: scale(1);
+      }
+
+      /* Marquee Ticker */
+      .marquee-wrapper {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .marquee-content {
+        display: flex;
+        animation: marquee 35s linear infinite;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Horizontal Scroll Hide Scrollbar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Custom selection */
+      ::selection {
+        background-color: #fed818;
+        color: #363430;
+      }
+
+      /* Dashed divider for Hero */
+      .border-dashed-custom {
+        border-bottom: 1px dashed rgba(54, 52, 48, 0.2);
+      }
+
+      /* Glassmorphism utility for awwwards redesign */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- Navigation -->
+
+    <div id="navbar-placeholder"></div>
+    <script src="/components/navbar.js"></script>
+
+    <!-- 3-Column Editorial Hero Section -->
+    <header
+      class="relative pt-32 lg:pt-40 pb-20 overflow-hidden bg-[#FAFAFA]"
+      id="hero"
+    >
+      <div class="max-w-[90rem] mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-10 items-stretch min-h-[75vh]">
+          <!-- Column 1: Typography & CTA (Left) -->
+          <div
+            class="lg:col-span-4 flex flex-col justify-between py-4 lg:py-10 z-10 order-2 lg:order-1"
+          >
+            <div>
+              <h1
+                class="gsap-hero-text text-[4rem] md:text-[5rem] lg:text-[5.5rem] xl:text-[6.5rem] font-bold text-brand-dark leading-[0.9] tracking-tighter mb-6 relative"
+              >
+                Building<span class="inline-block translate-y-[-0.3em] ml-1"
+                  ><i
+                    class="ph-fill ph-sparkle text-brand-dark text-[0.4em]"
+                  ></i></span
+                ><br />
+                Dreams
+              </h1>
+              <p
+                class="gsap-hero-text text-gray-500 text-lg leading-relaxed mb-8 max-w-sm"
+              >
+                Kami mengubah visi berani menjadi arsitektur modern yang terasa
+                hangat, fungsional, dan menginspirasi. Setiap proyek memadukan
+                kreativitas dengan presisi yang tahan lama.
+              </p>
+              <a
+                href="#contact"
+                class="gsap-hero-text inline-flex items-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-full font-medium hover:bg-brand-blue transition-all duration-300 group shadow-lg"
+              >
+                Mulai proyek Anda
+                <i
+                  class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"
+                ></i>
+              </a>
+            </div>
+
+            <div class="gsap-hero-text mt-16 lg:mt-auto">
+              <div
+                class="text-4xl font-bold text-brand-dark tracking-tight mb-2"
+              >
+                1.048+
+              </div>
+              <p
+                class="text-sm text-gray-500 max-w-[200px] leading-relaxed mb-4"
+              >
+                Klien yang telah mempercayakan desain ruang impiannya kepada
+                kami.
+              </p>
+              <div class="flex -space-x-3">
+                <img
+                  data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                />
+                <img
+                  data-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                />
+                <img
+                  data-src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                />
+                <img
+                  data-src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Tall Vertical Image (Center) -->
+          <div
+            class="lg:col-span-4 h-[600px] lg:h-auto w-full order-1 lg:order-2"
+          >
+            <div
+              class="w-full h-full rounded-[32px] overflow-hidden relative shadow-2xl gsap-hero-center-img"
+            >
+              <img
+                data-src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
+                alt="Modern Architecture"
+                class="w-full h-full object-cover parallax-hero-img transform scale-110 lazy-observe"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark/20 to-transparent"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Column 3: Portfolio Snippet & Excellence (Right) -->
+          <div
+            class="lg:col-span-4 flex flex-col justify-between py-4 lg:py-10 lg:pl-10 order-3 z-10"
+          >
+            <div class="gsap-hero-right mb-12 lg:mb-auto">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="flex text-brand-dark text-sm">
+                  <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+                  ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+                  ><i class="ph-fill ph-star"></i>
+                </div>
+                <span class="font-bold text-brand-dark">4.9</span>
+              </div>
+              <p class="text-sm text-gray-500 mb-6">
+                Tingkat kepuasan klien tertinggi
+              </p>
+
+              <div class="flex gap-4 mb-4">
+                <div
+                  class="w-1/2 aspect-video rounded-xl overflow-hidden shadow-sm"
+                >
+                  <img
+                    data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=400&fit=crop"
+                    class="w-full h-full object-cover lazy-observe"
+                  />
+                </div>
+                <div
+                  class="w-1/2 aspect-video rounded-xl overflow-hidden shadow-sm"
+                >
+                  <img
+                    data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&fit=crop"
+                    class="w-full h-full object-cover lazy-observe"
+                  />
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 text-gray-400 text-sm">
+                <i
+                  class="ph ph-arrow-left hover:text-brand-dark cursor-pointer transition-colors text-lg"
+                ></i>
+                <i
+                  class="ph ph-arrow-right hover:text-brand-dark cursor-pointer transition-colors text-lg"
+                ></i>
+                <span class="text-sm font-medium text-gray-500"
+                  >1-8 Recent Projects</span
+                >
+              </div>
+            </div>
+
+            <div class="gsap-hero-right border-dashed-custom pt-8">
+              <h3
+                class="text-3xl font-bold text-brand-dark mb-4 leading-tight tracking-tight"
+              >
+                Award-Winning<br />Excellence
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed max-w-sm">
+                Diakui atas inovasi dalam bidang arsitektur, kami menetapkan
+                standar untuk kualitas desain yang sesuai dengan karakter Anda.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Subtle Marquee -->
+    <div
+      class="bg-brand-dark py-4 border-y border-brand-tan/20 overflow-hidden"
+    >
+      <div
+        class="marquee-wrapper text-brand-tan font-medium tracking-[0.2em] uppercase text-xs"
+      >
+        <div class="marquee-content flex gap-16 items-center">
+          <span>JAKARTA</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>BALI</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>BANDUNG</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>SURABAYA</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>MEDAN</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>YOGYAKARTA</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>LOMBOK</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+
+          <span>JAKARTA</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>BALI</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>BANDUNG</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>SURABAYA</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>MEDAN</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>YOGYAKARTA</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+          <span>LOMBOK</span
+          ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Lala & Filosofi -->
+    <section
+      id="about"
+      class="pt-32 pb-20 bg-white relative z-10 overflow-hidden"
+    >
+      <div
+        class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-tan/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-0"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Introduction / Lala -->
+        <div class="max-w-3xl mb-24 gsap-fade-up">
+          <span
+            class="text-brand-blue font-bold tracking-widest uppercase text-xs mb-4 block"
+            >Mengenal Kami</span
+          >
+          <h2
+            class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight"
+          >
+            Hi, kami Langit Langit.id. <br />Biasa dipanggil
+            <span class="text-brand-tan italic">Lala.</span>
+          </h2>
+          <p class="text-gray-600 text-lg leading-relaxed">
+            Kami hadir tidak hanya sebagai desainer, tetapi sebagai mitra
+            pendengar. Berdiri dengan semangat untuk menciptakan ruang yang
+            jujur, relevan, dan mencerminkan identitas sejati pemiliknya di atas
+            segalanya.
+          </p>
+        </div>
+
+        <!-- Filosofi Core -->
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+          <div class="gsap-fade-up order-2 lg:order-1 relative">
+            <div
+              class="w-24 h-24 bg-brand-yellow rounded-full absolute -top-10 -left-10 -z-10 animate-pulse"
+            ></div>
+            <div
+              class="relative w-full aspect-square rounded-full overflow-hidden shadow-2xl border-8 border-white"
+            >
+              <img
+                data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop"
+                class="w-full h-full object-cover lazy-observe parallax-img-slow"
+              />
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 gsap-fade-up">
+            <h3
+              class="font-serif text-3xl md:text-4xl font-bold mb-6 leading-tight text-brand-dark"
+            >
+              Bukan sekadar <br /><span class="text-brand-blue"
+                >gaya semata.</span
+              >
+            </h3>
+            <p class="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
+              Kami tidak mendesain hanya untuk mempercantik portofolio kami.
+              Kami mendesain untuk penghuni. Untuk kebiasaan, cerita, dan
+              keberlanjutan masa depan keluarga mereka.
+            </p>
+
+            <div class="space-y-8 border-l-2 border-brand-tan/30 pl-6">
+              <div class="relative">
+                <div
+                  class="absolute -left-[29px] top-1 w-4 h-4 bg-brand-dark rounded-full border-4 border-white"
+                ></div>
+                <h4 class="font-bold text-brand-dark text-lg mb-2">
+                  Personalisasi Habit
+                </h4>
+                <p class="text-gray-500 leading-relaxed">
+                  Kami membedah kebiasaan gaya hidup Anda secara detail sebelum
+                  satu garis pun digambar melalui sesi wawancara yang personal.
+                </p>
+              </div>
+              <div class="relative">
+                <div
+                  class="absolute -left-[29px] top-1 w-4 h-4 bg-brand-blue rounded-full border-4 border-white"
+                ></div>
+                <h4 class="font-bold text-brand-dark text-lg mb-2">
+                  Rasa yang Hidup
+                </h4>
+                <p class="text-gray-500 leading-relaxed">
+                  Menghasilkan kualitas arsitektur yang terasa hangat sebagai
+                  sebuah "rumah", bukan sekadar "showroom" yang kaku.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jejak Perjalanan (REDESIGNED: Awwwards Winning Stats Section) -->
+    <section
+      class="py-24 bg-brand-dark relative z-10 overflow-hidden border-y border-white/5"
+    >
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div
+          class="flex flex-col md:flex-row justify-center items-center divide-y md:divide-y-0 md:divide-x divide-white/10 text-center gap-y-12 md:gap-y-0"
+        >
+          <!-- Stat 1: Design Project -->
+          <div class="flex-1 w-full py-6 md:py-0 gsap-fade-up">
+            <h3
+              class="gsap-counter text-6xl md:text-[5.5rem] font-sans font-bold text-brand-blue tracking-tight mb-4"
+              data-target="1048"
+            >
+              1.048
+            </h3>
+            <p
+              class="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase"
+            >
+              Design Project
+            </p>
+          </div>
+
+          <!-- Stat 2: Interior Project -->
+          <div
+            class="flex-1 w-full py-6 md:py-0 gsap-fade-up"
+            style="transition-delay: 100ms"
+          >
+            <h3
+              class="gsap-counter text-6xl md:text-[5.5rem] font-sans font-bold text-brand-tan tracking-tight mb-4"
+              data-target="324"
+            >
+              324
+            </h3>
+            <p
+              class="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase"
+            >
+              Interior Project
+            </p>
+          </div>
+
+          <!-- Stat 3: Civil Project -->
+          <div
+            class="flex-1 w-full py-6 md:py-0 gsap-fade-up"
+            style="transition-delay: 200ms"
+          >
+            <h3
+              class="gsap-counter text-6xl md:text-[5.5rem] font-sans font-bold text-brand-yellow tracking-tight mb-4"
+              data-target="246"
+            >
+              246
+            </h3>
+            <p
+              class="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase"
+            >
+              Civil Project
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layanan (Sticky Scroll Layout) - FIXED VISIBILITY ISSUE -->
+    <section
+      id="services"
+      class="py-32 bg-brand-light relative z-10 border-t border-gray-200"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-16 relative items-start">
+          <!-- Left: Sticky Title -->
+          <div class="lg:col-span-4 lg:sticky lg:top-32 gsap-fade-up">
+            <div class="w-12 h-1.5 bg-brand-tan mb-6"></div>
+            <h2
+              class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark leading-[1.1] mb-6"
+            >
+              Layanan &<br />Spesialisasi
+            </h2>
+            <p class="text-gray-500 text-lg leading-relaxed mb-8">
+              Meskipun core utama Lala adalah Desain, kami menghadirkan solusi
+              menyeluruh, dari gagasan arsitektur berskala besar hingga
+              realisasi detail eksekusi.
+            </p>
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors group"
+            >
+              Lihat Pricelist Kami
+              <i
+                class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"
+              ></i>
+            </a>
+          </div>
+
+          <!-- Right: Scrolling Cards -->
+          <div class="lg:col-span-8 flex flex-col gap-8">
+            <!-- Service 1 (Hover Blue) -->
+            <div
+              class="gsap-service-card bg-white p-10 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-blue/30 hover:shadow-xl transition-all duration-300"
+            >
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-100 pb-8"
+              >
+                <div
+                  class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-3xl text-brand-dark group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300"
+                >
+                  <i class="ph-light ph-blueprint"></i>
+                </div>
+                <span
+                  class="font-serif text-5xl font-light text-gray-200 group-hover:text-brand-blue transition-colors duration-300"
+                  >01</span
+                >
+              </div>
+              <h3 class="text-3xl font-bold text-brand-dark mb-4">
+                Desain Arsitektur
+              </h3>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                Perencanaan fasad dan tata ruang yang fungsional, adaptif dengan
+                iklim tropis, serta dirancang agar relevan melintasi generasi.
+              </p>
+            </div>
+
+            <!-- Service 2 (Hover Tan) -->
+            <div
+              class="gsap-service-card bg-white p-10 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-tan/40 hover:shadow-xl transition-all duration-300"
+            >
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-100 pb-8"
+              >
+                <div
+                  class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-3xl text-brand-dark group-hover:bg-brand-tan group-hover:text-white transition-colors duration-300"
+                >
+                  <i class="ph-light ph-armchair"></i>
+                </div>
+                <span
+                  class="font-serif text-5xl font-light text-gray-200 group-hover:text-brand-tan transition-colors duration-300"
+                  >02</span
+                >
+              </div>
+              <h3 class="text-3xl font-bold text-brand-dark mb-4">
+                Interior Custom
+              </h3>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                Optimasi ruang mendalam, mulai dari perancangan *custom
+                furniture*, seleksi material premium, hingga skema tata cahaya
+                dramatis.
+              </p>
+            </div>
+
+            <!-- Service 3 (Hover Yellow) -->
+            <div
+              class="gsap-service-card bg-white p-10 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-yellow/50 hover:shadow-xl transition-all duration-300"
+            >
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-100 pb-8"
+              >
+                <div
+                  class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-3xl text-brand-dark group-hover:bg-brand-yellow group-hover:text-brand-dark transition-colors duration-300"
+                >
+                  <i class="ph-light ph-files"></i>
+                </div>
+                <span
+                  class="font-serif text-5xl font-light text-gray-200 group-hover:text-brand-yellow transition-colors duration-300"
+                  >03</span
+                >
+              </div>
+              <h3 class="text-3xl font-bold text-brand-dark mb-4">
+                Gambar Kerja & Estimasi RAB
+              </h3>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                Penyusunan dokumen teknis komprehensif (struktur & utilitas) dan
+                Rencana Anggaran Biaya detail sebagai jaminan eksekusi
+                pembangunan yang presisi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horizontal Scroll Portfolio Section -->
+    <section
+      id="portfolio"
+      class="bg-brand-dark text-white overflow-hidden py-32 relative border-t-4 border-brand-yellow"
+    >
+      <div class="max-w-7xl mx-auto px-6 mb-16">
+        <h2
+          class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+        >
+          Mewujudkan <br /><span class="text-brand-tan italic font-light"
+            >Rasa Dunia.</span
+          >
+        </h2>
+        <p class="text-gray-400 max-w-xl mt-6 text-lg">
+          Dari nuansa hening Wabi Sabi hingga hangatnya Tropis Bali. Kami
+          menangkap wawasan arsitektur dari 50+ negara untuk diwujudkan dalam
+          hunian Anda.
+        </p>
+      </div>
+
+      <!-- The Pinning Container -->
+      <div
+        class="portfolio-horizontal-wrapper relative h-[60vh] flex items-center"
+      >
+        <div
+          class="portfolio-horizontal-container flex gap-8 px-6 absolute top-0 left-0 h-full items-center no-scrollbar w-max"
+        >
+          <div
+            class="w-[75vw] md:w-[45vw] lg:w-[32vw] h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          >
+            <img
+              data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
+            ></div>
+            <div class="absolute bottom-8 left-8">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Portfolio
+              </p>
+              <h3 class="font-serif text-3xl font-bold">Wabi Sabi House</h3>
+            </div>
+          </div>
+
+          <div
+            class="w-[75vw] md:w-[45vw] lg:w-[32vw] h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          >
+            <img
+              data-src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1600&auto=format&fit=crop"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
+            ></div>
+            <div class="absolute bottom-8 left-8">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Portfolio
+              </p>
+              <h3 class="font-serif text-3xl font-bold">Tropical Bali</h3>
+            </div>
+          </div>
+
+          <div
+            class="w-[75vw] md:w-[45vw] lg:w-[32vw] h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          >
+            <img
+              data-src="https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1600&auto=format&fit=crop"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
+            ></div>
+            <div class="absolute bottom-8 left-8">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Portfolio
+              </p>
+              <h3 class="font-serif text-3xl font-bold">Moroccan Riad</h3>
+            </div>
+          </div>
+
+          <div
+            class="w-[75vw] md:w-[45vw] lg:w-[32vw] h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          >
+            <img
+              data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
+            ></div>
+            <div class="absolute bottom-8 left-8">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Portfolio
+              </p>
+              <h3 class="font-serif text-3xl font-bold">Modern Luxury</h3>
+            </div>
+          </div>
+
+          <div class="w-[10vw] h-10 shrink-0"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standar Tahapan Kerja (Circular Redesign) -->
+    <section id="workflow" class="py-32 bg-white relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 lg:mb-24 gsap-fade-up">
+          <span
+            class="text-brand-blue font-bold tracking-widest uppercase text-xs mb-4 block"
+            >Metodologi Lala</span
+          >
+          <h2
+            class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-4"
+          >
+            Proses Mewujudkan <br />Mimpi Anda.
+          </h2>
+          <p class="text-gray-500 text-lg">
+            Langkah transparan dan terstruktur menuju rumah impian bersama kami.
+          </p>
+        </div>
+
+        <!-- Desktop Circular Layout (Fixed Responsiveness & Positioning) -->
+        <div
+          class="hidden lg:flex relative w-full max-w-[850px] aspect-square mx-auto items-center justify-center gsap-fade-up"
+        >
+          <!-- Circular Track / Dashed Line -->
+          <!-- We set a strict width/height on the circle instead of full container -->
+          <div
+            class="absolute w-[450px] h-[450px] border-[2px] border-dashed border-gray-200 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none"
+          ></div>
+
+          <!-- Center Badge -->
+          <div
+            class="absolute z-20 bg-brand-dark text-white px-8 py-4 rounded-full flex items-center gap-3 shadow-[0_10px_30px_rgba(54,52,48,0.3)] hover:scale-105 transition-transform duration-500 cursor-default"
+          >
+            <i class="ph-fill ph-buildings text-2xl text-brand-tan"></i>
+            <span class="font-bold text-lg tracking-wide">Metodologi Lala</span>
+          </div>
+
+          <!-- Nodes: Anchored to the container, perfectly centered -->
+          <!-- Step 1 (Top) -->
+          <div
+            class="absolute top-[5%] left-1/2 -translate-x-1/2 w-64 text-center z-10 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+            >
+              <i class="ph-light ph-users"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-lg mb-1">
+              Konsultasi & Survey
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Analisis gaya hidup, preferensi, dan kondisi lokasi eksisting.
+            </p>
+          </div>
+
+          <!-- Step 2 (Right) -->
+          <div
+            class="absolute top-1/2 right-[2%] -translate-y-1/2 w-64 text-center z-10 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-tan text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+            >
+              <i class="ph-light ph-compass-tool"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-lg mb-1">
+              Layout Rencana
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Rancangan dasar tata ruang fungsional dan estetika fasad awal.
+            </p>
+          </div>
+
+          <!-- Step 3 (Bottom) -->
+          <div
+            class="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-64 text-center z-10 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-yellow text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+            >
+              <i class="ph-light ph-cube"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-lg mb-1">
+              3D Render & VR
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Translasi denah menjadi visual 3D fotorealistik.
+            </p>
+          </div>
+
+          <!-- Step 4 (Left) -->
+          <div
+            class="absolute top-1/2 left-[2%] -translate-y-1/2 w-64 text-center z-10 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-dark text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+            >
+              <i class="ph-light ph-blueprint"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-lg mb-1">
+              Blueprint & RAB
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Penyerahan Gambar Kerja teknis (DED) lengkap estimasi RAB.
+            </p>
+          </div>
+
+          <!-- Connecting Arrows: Mathematical placement (approx 32% from corners for a 850px container with 450px circle) -->
+          <!-- Arrow 1 to 2 (Top-Right) -->
+          <div
+            class="absolute top-[28%] right-[28%] text-gray-300 rotate-[45deg] text-3xl"
+          >
+            <i class="ph-light ph-arrow-right"></i>
+          </div>
+          <!-- Arrow 2 to 3 (Bottom-Right) -->
+          <div
+            class="absolute bottom-[28%] right-[28%] text-gray-300 rotate-[135deg] text-3xl"
+          >
+            <i class="ph-light ph-arrow-right"></i>
+          </div>
+          <!-- Arrow 3 to 4 (Bottom-Left) -->
+          <div
+            class="absolute bottom-[28%] left-[28%] text-gray-300 rotate-[225deg] text-3xl"
+          >
+            <i class="ph-light ph-arrow-right"></i>
+          </div>
+          <!-- Arrow 4 to 1 (Top-Left) -->
+          <div
+            class="absolute top-[28%] left-[28%] text-gray-300 rotate-[315deg] text-3xl"
+          >
+            <i class="ph-light ph-arrow-right"></i>
+          </div>
+        </div>
+
+        <!-- Mobile Vertical Layout (Visible only on smaller screens) -->
+        <div
+          class="lg:hidden relative space-y-12 before:absolute before:inset-0 before:ml-8 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent"
+        >
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gsap-fade-up"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 rounded-full border border-gray-100 bg-white text-brand-blue text-2xl shadow-sm shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"
+            >
+              <i class="ph-light ph-users"></i>
+            </div>
+            <div
+              class="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-50"
+            >
+              <h3 class="font-bold text-brand-dark text-lg mb-1">
+                Konsultasi & Survey
+              </h3>
+              <p class="text-sm text-gray-500">
+                Analisis gaya hidup, preferensi, dan kondisi lokasi eksisting.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gsap-fade-up"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 rounded-full border border-gray-100 bg-white text-brand-tan text-2xl shadow-sm shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"
+            >
+              <i class="ph-light ph-compass-tool"></i>
+            </div>
+            <div
+              class="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-50"
+            >
+              <h3 class="font-bold text-brand-dark text-lg mb-1">
+                Layout Rencana
+              </h3>
+              <p class="text-sm text-gray-500">
+                Rancangan dasar tata ruang fungsional dan estetika fasad awal.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gsap-fade-up"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 rounded-full border border-gray-100 bg-white text-brand-yellow text-2xl shadow-sm shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"
+            >
+              <i class="ph-light ph-cube"></i>
+            </div>
+            <div
+              class="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-50"
+            >
+              <h3 class="font-bold text-brand-dark text-lg mb-1">
+                3D Render & VR
+              </h3>
+              <p class="text-sm text-gray-500">
+                Translasi denah menjadi visual 3D fotorealistik.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gsap-fade-up"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 rounded-full border border-gray-100 bg-white text-brand-dark text-2xl shadow-sm shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"
+            >
+              <i class="ph-light ph-blueprint"></i>
+            </div>
+            <div
+              class="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] bg-white p-6 rounded-2xl shadow-sm border border-gray-50"
+            >
+              <h3 class="font-bold text-brand-dark text-lg mb-1">
+                Blueprint & RAB
+              </h3>
+              <p class="text-sm text-gray-500">
+                Penyerahan Gambar Kerja teknis (DED) lengkap dengan estimasi
+                RAB.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kredibilitas & Infrastruktur / Di Balik Layar -->
+    <section id="trust" class="py-24 bg-[#FAFAFA] border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16 gsap-fade-up">
+          <span
+            class="text-brand-tan font-bold tracking-widest uppercase text-xs border border-brand-tan/30 px-4 py-1.5 rounded-full inline-block mb-4"
+            >Di Balik Layar Lala</span
+          >
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4"
+          >
+            Ketenangan Anda <br />adalah Prioritas.
+          </h2>
+          <p class="text-gray-500 text-lg">
+            Setiap desain yang presisi mencerminkan dedikasi. Kami memfasilitasi
+            Anda dengan sistem dan legalitas tingkat tinggi.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 gsap-fade-up">
+          <!-- Trust Card 1 -->
+          <div
+            class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-brand-light rounded-2xl flex items-center justify-center text-brand-blue text-2xl mb-6"
+            >
+              <i class="ph-fill ph-certificate"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-xl mb-3">
+              Legalitas Resmi
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-4">
+              Kami bernaung di bawah PT Langit Karya Indonesia. Memiliki
+              legalitas berstandar yang terdaftar resmi pada Kementerian
+              Investasi / BKPM RI.
+            </p>
+            <span
+              class="text-xs font-bold text-brand-dark bg-gray-100 px-3 py-1 rounded"
+              >NIB: 240824087453</span
+            >
+          </div>
+
+          <!-- Trust Card 2 -->
+          <div
+            class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-brand-light rounded-2xl flex items-center justify-center text-brand-yellow text-2xl mb-6"
+            >
+              <i class="ph-fill ph-monitor-play"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-xl mb-3">
+              Schedule Terintegrasi
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Seluruh alur kerja terhubung dalam ekosistem digital internal
+              kami. Menjamin ketepatan waktu dan keutuhan histori proyek desain
+              Anda.
+            </p>
+          </div>
+
+          <!-- Trust Card 3 -->
+          <div
+            class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-brand-light rounded-2xl flex items-center justify-center text-brand-tan text-2xl mb-6"
+            >
+              <i class="ph-fill ph-compass-tool"></i>
+            </div>
+            <h3 class="font-bold text-brand-dark text-xl mb-3">
+              Artisan Design Studio
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Tempat representatif di mana gagasan ruang dibentuk. Tersedia
+              ruang kreatif khusus dengan library material untuk bertukar
+              pikiran.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Section (Tim Inti Lala - Updated Names & Clean Layout) -->
+    <!-- <section id="leadership" class="py-24 bg-white border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-100 pb-10 gsap-fade-up"
+        >
+          <div class="max-w-lg">
+            <h2
+              class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4"
+            >
+              Tim Inti Lala
+            </h2>
+            <p class="text-gray-500 text-lg leading-relaxed">
+              Berkomitmen menjaga standar kualitas melalui arahan tim yang
+              berdedikasi dan terpercaya.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 gsap-fade-up">
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-transparent group-hover:border-brand-blue transition-colors duration-500 p-1"
+            >
+              <img
+                data-src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=400&h=400&fit=crop"
+                alt="Heni Rahmawati Lubis"
+                class="w-full h-full rounded-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 lazy-observe"
+              />
+            </div>
+            <h4 class="font-bold text-brand-dark text-xl mb-1">
+              Heni Rahmawati Lubis
+            </h4>
+            <p
+              class="text-xs text-brand-blue font-bold uppercase tracking-widest mb-4"
+            >
+              Chief Executive Officer
+            </p>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-brand-blue transition-colors text-xl"
+              ><i class="ph-fill ph-linkedin-logo"></i
+            ></a>
+          </div>
+
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-transparent group-hover:border-brand-tan transition-colors duration-500 p-1"
+            >
+              <img
+                data-src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&h=400&fit=crop"
+                alt="Tomy Budy Hutomo"
+                class="w-full h-full rounded-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 lazy-observe"
+              />
+            </div>
+            <h4 class="font-bold text-brand-dark text-xl mb-1">
+              Tomy Budy Hutomo
+            </h4>
+            <p
+              class="text-xs text-brand-tan font-bold uppercase tracking-widest mb-4"
+            >
+              Chief Technology Officer
+            </p>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-brand-tan transition-colors text-xl"
+              ><i class="ph-fill ph-linkedin-logo"></i
+            ></a>
+          </div>
+
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-transparent group-hover:border-brand-yellow transition-colors duration-500 p-1"
+            >
+              <img
+                data-src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=400&fit=crop"
+                alt="Deni"
+                class="w-full h-full rounded-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 lazy-observe"
+              />
+            </div>
+            <h4 class="font-bold text-brand-dark text-xl mb-1">Deni</h4>
+            <p
+              class="text-xs text-brand-yellow font-bold uppercase tracking-widest mb-4"
+            >
+              Board of Design (BOD)
+            </p>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-brand-yellow transition-colors text-xl"
+              ><i class="ph-fill ph-linkedin-logo"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Pricing (Exact Match with Uploaded Screenshot Style) -->
+    <section id="pricing" class="py-32 bg-white border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-20 gsap-fade-up">
+          <span
+            class="text-brand-dark font-bold tracking-widest uppercase text-xs border border-gray-200 px-4 py-1.5 rounded-full inline-block mb-6"
+            >Pricelist 2026</span
+          >
+          <h2
+            class="font-serif text-4xl md:text-5xl font-bold text-brand-dark mb-6"
+          >
+            Investasi Perencanaan
+          </h2>
+          <p class="text-gray-500 text-lg">
+            Setiap rumah dimulai dari perencanaan yang matang. Pilih skala yang
+            sesuai dengan tingkat kebutuhan detail Anda.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Paket Sipil (White Card) -->
+          <div
+            class="gsap-price flex flex-col bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden lg:mt-4"
+          >
+            <div class="p-8 border-b border-gray-50 bg-gray-50/50">
+              <h3 class="font-bold text-xl text-brand-dark mb-2">
+                Paket Sipil
+              </h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-4xl font-bold text-brand-dark tracking-tight"
+                  >Rp 100k</span
+                >
+                <span class="text-sm text-gray-500 font-medium">/m²</span>
+              </div>
+              <p
+                class="text-sm text-gray-500 leading-relaxed border-b border-gray-100 pb-4"
+              >
+                Perencanaan esensial. Konsep desain arsitektur, 3D Eksterior,
+                dan Sipil dasar.
+              </p>
+            </div>
+            <div class="p-8 flex-1 flex flex-col">
+              <ul class="space-y-4 text-gray-600 flex-1 mb-8 text-sm">
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-brand-dark text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>Konsep Arsitektur Dasar</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-brand-dark text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>3D Eksterior & Sipil</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-brand-dark text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>Cocok untuk rumah standar</span>
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="w-full block text-center py-3.5 rounded-xl border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-colors"
+                >Pilih Paket</a
+              >
+            </div>
+          </div>
+
+          <!-- Paket Premium (Replicating Screenshot exactly) -->
+          <div
+            class="gsap-price flex flex-col bg-brand-blue text-white rounded-[32px] shadow-2xl overflow-hidden transform lg:-translate-y-2 relative border border-brand-blue"
+          >
+            <!-- Ribbon -->
+            <div
+              class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-[10px] font-bold uppercase tracking-wider px-10 py-1.5 rotate-45 translate-x-8 translate-y-5 shadow-sm"
+            >
+              MOST POPULAR
+            </div>
+
+            <div class="p-8">
+              <h3 class="font-bold text-brand-yellow text-xl mb-2">
+                Paket Premium
+              </h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span
+                  class="text-4xl lg:text-5xl font-bold text-white tracking-tight"
+                  >Rp 200k</span
+                >
+                <span class="text-sm text-white/70 font-medium">/m²</span>
+              </div>
+              <p
+                class="text-sm text-white/80 leading-relaxed border-b border-white/20 pb-6 mb-6"
+              >
+                Paling lengkap. Konsep, DED, Interior, hingga RAB mendetail.
+              </p>
+
+              <ul class="space-y-5 text-white flex-1 mb-10 text-sm font-medium">
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-white text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>DED Lengkap</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-white text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>RAB Terperinci</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-white text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>Video & Estimasi Waktu</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-white text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>S-Curve Reports</span>
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="w-full block text-center py-3.5 rounded-xl bg-brand-yellow text-brand-dark font-bold hover:bg-white transition-colors shadow-lg shadow-brand-yellow/20"
+                >Pilih Paket</a
+              >
+            </div>
+          </div>
+
+          <!-- Paket Per Ruangan (Replicating Screenshot exactly) -->
+          <div
+            class="gsap-price flex flex-col bg-[#363430] text-white rounded-3xl shadow-xl overflow-hidden border border-[#4A4844] lg:mt-4"
+          >
+            <div class="p-8">
+              <h3 class="font-bold text-brand-tan text-xl mb-2">Per Ruangan</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-4xl font-bold text-white tracking-tight"
+                  >Rp 4.5jt</span
+                >
+                <span class="text-sm text-gray-400 font-medium">/ruang</span>
+              </div>
+              <p
+                class="text-sm text-gray-400 leading-relaxed border-b border-white/10 pb-6 mb-6"
+              >
+                Solusi spesifik untuk kamar tidur, ruang kerja, dll.
+              </p>
+
+              <ul class="space-y-5 text-gray-300 flex-1 mb-10 text-sm">
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-gray-400 text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>Konsultasi Personal</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-gray-400 text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>Gambar Kerja Furniture</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="ph-bold ph-check text-gray-400 text-base shrink-0 mt-0.5"
+                  ></i>
+                  <span>Rekomendasi Material</span>
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="w-full block text-center py-3.5 rounded-xl border border-gray-500 text-white font-bold hover:bg-white hover:text-brand-dark transition-colors"
+                >Pilih Paket</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPLICIT REFUNDABLE INFO (Design Focus + Mitra Sipil) -->
+        <div
+          class="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-brand-blue/5 to-transparent rounded-3xl p-8 border border-brand-blue/20 flex flex-col md:flex-row items-center gap-8 shadow-sm gsap-fade-up"
+        >
+          <div
+            class="w-16 h-16 bg-white rounded-full flex items-center justify-center shrink-0 border border-brand-blue/20 shadow-md"
+          >
+            <i class="ph-fill ph-handshake text-brand-blue text-3xl"></i>
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <h4 class="font-bold text-brand-dark text-lg mb-1">
+              Design & Survey Fee Refundable 100%
+            </h4>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Fokus utama layanan kami adalah pada
+              <strong>Desain Arsitektur & Interior</strong>. Namun, kami
+              menyediakan Mitra Sipil/Kontraktor pelaksana yang kredibel. Jika
+              Anda memilih melanjutkan pembangunan fisik bersama Mitra kami,
+              <strong
+                >seluruh biaya Desain dan Survey akan di-refund 100%</strong
+              >
+              dengan menjadi potongan biaya konstruksi Anda!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Call to Action & Footer -->
+    <footer
+      id="contact"
+      class="bg-brand-dark text-white pt-32 pb-10 border-t-8 border-brand-yellow"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="grid lg:grid-cols-12 gap-16 mb-20 border-b border-white/10 pb-20 items-center"
+        >
+          <div class="lg:col-span-6 gsap-fade-up">
+            <h2
+              class="font-serif text-5xl md:text-7xl font-bold mb-8 leading-[1.05] tracking-tight"
+            >
+              Wujudkan <br />
+              <span class="italic text-brand-tan font-light">Mimpi Anda.</span>
+            </h2>
+            <p class="text-gray-400 mb-12 max-w-md text-lg leading-relaxed">
+              Jarak bukan halangan. Melalui sistem digital kami, Langit
+              Langit.id (Lala) siap merancang hunian terbaik di seluruh
+              Indonesia.
+            </p>
+            <div class="flex flex-col gap-6 border-l border-white/20 pl-6">
+              <a
+                href="mailto:langitlangit.id@gmail.com"
+                class="flex items-center gap-4 text-white hover:text-brand-tan transition-colors group"
+              >
+                <i
+                  class="ph ph-envelope-simple text-2xl text-gray-500 group-hover:text-brand-tan transition-colors"
+                ></i>
+                <span class="text-lg font-medium tracking-wide"
+                  >langitlangit.id@gmail.com</span
+                >
+              </a>
+              <a
+                href="tel:+6281222250143"
+                class="flex items-center gap-4 text-white hover:text-brand-tan transition-colors group"
+              >
+                <i
+                  class="ph ph-whatsapp-logo text-2xl text-gray-500 group-hover:text-brand-tan transition-colors"
+                ></i>
+                <span class="text-lg font-medium tracking-wide"
+                  >+62 81 2222 50143</span
+                >
+              </a>
+              <div class="flex items-center gap-4 text-gray-400 mt-4">
+                <i class="ph ph-map-pin text-2xl text-gray-500"></i>
+                <span class="text-sm">Depok, Jawa Barat, Indonesia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 flex justify-end gsap-fade-up">
+            <div
+              class="bg-white text-brand-dark p-10 md:p-12 rounded-[32px] w-full max-w-[500px]"
+            >
+              <h3 class="text-3xl font-bold mb-8 tracking-tight">
+                Mulai Konsultasi
+              </h3>
+              <form
+                onsubmit="
+                  event.preventDefault();
+                  alert('Permintaan berhasil dikirim!');
+                "
+                class="space-y-6"
+              >
+                <div>
+                  <label
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2"
+                    >Nama Lengkap</label
+                  >
+                  <input
+                    type="text"
+                    required
+                    class="w-full bg-transparent border-b-2 border-gray-200 px-0 py-2 text-brand-dark focus:outline-none focus:border-brand-blue transition-colors"
+                    placeholder="Ketik nama Anda..."
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2"
+                    >WhatsApp / Telp</label
+                  >
+                  <input
+                    type="tel"
+                    required
+                    class="w-full bg-transparent border-b-2 border-gray-200 px-0 py-2 text-brand-dark focus:outline-none focus:border-brand-blue transition-colors"
+                    placeholder="0812..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl hover:bg-brand-dark transition-colors mt-6 flex justify-center items-center gap-2 group shadow-lg shadow-brand-blue/20"
+                >
+                  Kirim Pesan
+                  <i
+                    class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-6"
+        >
+          <a
+            href="/"
+            class="flex-shrink-0 flex items-center gap-2 cursor-pointer group"
+          >
+            <img
+              src="https://iili.io/B2YU2Mg.png"
+              alt="LangitLangit Logo"
+              class="h-7 w-auto transition-transform duration-300 group-hover:scale-105"
+              onerror="this.style.display = 'none'"
+              fetchpriority="high"
+              loading="eager"
+              decoding="sync"
+            />
+            <span
+              class="font-sans font-bold text-2xl tracking-tight text-brand-900"
+              >Langitlangit<span class="text-brand-yellow">.ID</span></span
+            >
+          </a>
+          <p>&copy; 2026 Langit Langit.id. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-brand-tan transition-colors text-2xl"
+              ><i class="ph-fill ph-instagram-logo"></i
+            ></a>
+            <a href="#" class="hover:text-brand-tan transition-colors text-2xl"
+              ><i class="ph-fill ph-tiktok-logo"></i
+            ></a>
+            <a href="#" class="hover:text-brand-tan transition-colors text-2xl"
+              ><i class="ph-fill ph-youtube-logo"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // ADVANCED LAZY LOADING USING INTERSECTION OBSERVER
+        const imageObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.onload = () => {
+                  img.classList.add("lazy-loaded");
+                };
+                observer.unobserve(img);
+              }
+            });
+          },
+          { rootMargin: "50px 0px" },
+        );
+
+        document.querySelectorAll("img.lazy-observe").forEach((img) => {
+          imageObserver.observe(img);
+        });
+
+        // HERO ANIMATIONS
+        gsap.from(".gsap-hero-text", {
+          y: 50,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+          delay: 0.2,
+        });
+        gsap.from(".gsap-hero-center-img", {
+          clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+          y: 40,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out",
+          delay: 0.5,
+        });
+        gsap.from(".gsap-hero-right", {
+          x: 30,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          delay: 1,
+        });
+        gsap.to(".parallax-hero-img", {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        // PARALLAX UMUM PADA GAMBAR ABOUT
+        gsap.utils.toArray(".parallax-img-slow").forEach((img) => {
+          gsap.to(img, {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+
+        // LAYANAN
+        gsap.fromTo(
+          ".gsap-service-card",
+          { y: 60, opacity: 0 },
+          {
+            scrollTrigger: { trigger: "#services", start: "top 60%" },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+          },
+        );
+
+        // HORIZONTAL SCROLL PORTFOLIO
+        const horizontalSection = document.querySelector(
+          ".portfolio-horizontal-wrapper",
+        );
+        const horizontalContainer = document.querySelector(
+          ".portfolio-horizontal-container",
+        );
+        if (horizontalSection && horizontalContainer) {
+          function getScrollAmount() {
+            return -(horizontalContainer.scrollWidth - window.innerWidth);
+          }
+          const tween = gsap.to(horizontalContainer, {
+            x: getScrollAmount,
+            ease: "none",
+          });
+          ScrollTrigger.create({
+            trigger: "#portfolio",
+            start: "top top",
+            end: () => `+=${getScrollAmount() * -1}`,
+            pin: true,
+            animation: tween,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          });
+        }
+
+        // GENERAL FADE UPS & PRICING
+        gsap.utils.toArray(".gsap-fade-up").forEach((elem) => {
+          gsap.fromTo(
+            elem,
+            { y: 40, opacity: 0 },
+            {
+              scrollTrigger: { trigger: elem, start: "top 85%" },
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+            },
+          );
+        });
+
+        gsap.fromTo(
+          ".gsap-price",
+          { y: 50, opacity: 0 },
+          {
+            scrollTrigger: { trigger: "#pricing", start: "top 75%" },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+          },
+        );
+
+        // ANIMASI STAT COUNTER
+        gsap.utils.toArray(".gsap-counter").forEach((counter) => {
+          const target = parseInt(counter.getAttribute("data-target"));
+          gsap.fromTo(
+            counter,
+            { innerHTML: 0 },
+            {
+              innerHTML: target,
+              duration: 2.5,
+              ease: "power3.out",
+              snap: { innerHTML: 1 },
+              scrollTrigger: {
+                trigger: counter.closest("section"),
+                start: "top 80%",
+              },
+              onUpdate: function () {
+                if (target >= 1000) {
+                  counter.innerHTML = Math.round(this.targets()[0].innerHTML)
+                    .toLocaleString("id-ID")
+                    .replace(",", ".");
+                } else {
+                  counter.innerHTML = Math.round(this.targets()[0].innerHTML);
+                }
+              },
+            },
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

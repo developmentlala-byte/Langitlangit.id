@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalogue - Langit Langit.id | Architecture & Interior Design</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: "#135A86",
+                tan: "#DBBFA0",
+                yellow: "#FED818",
+                cream: "#FFFD5F",
+                dark: "#363430",
+                light: "#FAFAFA",
+                bgdark: "#31302C",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #fafafa;
+        color: #363430;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .glass-nav {
+        background: rgba(250, 250, 250, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(219, 191, 160, 0.2);
+      }
+
+      /* Advanced Smooth Image Loading */
+      img.lazy-observe {
+        opacity: 0;
+        filter: blur(15px) brightness(1.1);
+        transform: scale(1.05);
+        transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      img.lazy-loaded {
+        opacity: 1;
+        filter: blur(0) brightness(1);
+        transform: scale(1); /* Parallax override happens in JS */
+      }
+
+      ::selection {
+        background-color: #fed818;
+        color: #363430;
+      }
+
+      /* Grid Parallax Image Wrapper */
+      .img-parallax-wrapper {
+        position: absolute;
+        top: -15%;
+        left: 0;
+        width: 100%;
+        height: 130%; /* Extra height for parallax travel */
+        will-change: transform;
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- Modal Search Halaman (Sama persis dengan index) -->
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-[100] bg-black/60 hidden flex items-center justify-center backdrop-blur-sm transition-opacity"
+    >
+      <div
+        class="bg-white rounded-2xl w-full max-w-lg p-8 mx-4 shadow-2xl relative"
+      >
+        <button
+          onclick="closeSearch()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-brand-dark transition-colors"
+        >
+          <i class="ph-bold ph-x text-2xl"></i>
+        </button>
+        <h3 class="text-2xl font-serif font-bold text-brand-dark mb-2">
+          Pencarian
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Temukan artikel, layanan, atau portofolio desain kami.
+        </p>
+        <form action="/search" method="GET" class="flex gap-4">
+          <input
+            type="text"
+            name="q"
+            id="search-input"
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors"
+            placeholder="Ketik kata kunci..."
+            required
+          />
+          <button
+            type="submit"
+            class="bg-brand-dark text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-blue transition-colors shadow-md"
+          >
+            Cari
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="navbar-placeholder"></div>
+    <script src="/components/navbar.js"></script>
+
+    <!-- Hero Section (Clean & Minimalist) -->
+    <header
+      class="pt-48 pb-20 bg-[#FAFAFA] relative border-b border-gray-200"
+      id="hero"
+    >
+      <div
+        class="absolute right-0 top-0 w-1/3 h-full bg-brand-tan/5 blur-[150px] pointer-events-none"
+      ></div>
+      <div class="max-w-[90rem] mx-auto px-6 relative z-10">
+        <div class="max-w-4xl">
+          <p
+            class="gsap-hero-el text-brand-blue font-bold tracking-[0.2em] uppercase text-sm mb-6 flex items-center gap-3"
+          >
+            <span class="w-8 h-[2px] bg-brand-blue"></span> Our Catalogue
+          </p>
+          <h1
+            class="gsap-hero-el font-serif text-[3.5rem] md:text-[5rem] lg:text-[6rem] font-bold text-brand-dark leading-[1] tracking-tight mb-8"
+          >
+            Pilih style <br />
+            <span class="italic text-brand-tan font-light"
+              >keinginan kamu.</span
+            >
+          </h1>
+          <p
+            class="gsap-hero-el text-gray-500 text-lg md:text-xl max-w-2xl leading-relaxed"
+          >
+            Langitlangit.id hadir untuk menciptakan ruang yang stylish dan
+            nyaman. Dengan perhatian pada detail dan tren terbaru, kami
+            memastikan setiap sudut hunian mencerminkan karakter Anda.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Bento Grid Portfolio Section -->
+    <section class="py-24 bg-white relative z-10" id="catalogue-grid">
+      <div class="max-w-[90rem] mx-auto px-6">
+        <div class="flex items-end justify-between mb-16">
+          <h2
+            class="gsap-title font-serif text-3xl md:text-4xl font-bold text-brand-dark"
+          >
+            Fit your style now
+          </h2>
+          <p
+            class="gsap-title text-sm font-bold tracking-widest uppercase text-gray-400 hidden md:block"
+          >
+            06 Themes Available
+          </p>
+        </div>
+
+        <!-- CSS Grid (Bento Box Style) -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[350px] md:auto-rows-[400px]"
+        >
+          <!-- 1. Tropical (Wide - Spans 2 columns) -->
+          <a
+            href="/theme/tropical"
+            class="gsap-card group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-500 md:col-span-2 lg:col-span-2 row-span-1 block"
+          >
+            <div class="img-parallax-wrapper">
+              <!-- Using high-res unsplash for preview, simulating beautiful architectural photography -->
+              <img
+                data-src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1600&auto=format&fit=crop"
+                class="gsap-parallax w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 lazy-observe"
+                alt="Tropical Theme"
+              />
+            </div>
+            <!-- Dynamic Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
+
+            <!-- Content -->
+            <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-[0.2em] uppercase mb-3 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100"
+              >
+                01 — Style
+              </p>
+              <h3
+                class="font-serif text-4xl md:text-5xl text-white font-bold mb-0 transform translate-y-4 group-hover:-translate-y-2 transition-transform duration-500"
+              >
+                Tropical
+              </h3>
+              <div
+                class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-4 transition-all duration-500"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-white text-sm font-medium border-b border-brand-yellow pb-1"
+                  >Jelajahi Desain <i class="ph-bold ph-arrow-right"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 2. Japandi (Tall - Spans 2 rows) -->
+          <a
+            href="/theme/japandi"
+            class="gsap-card group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-500 col-span-1 row-span-1 md:row-span-2 block"
+          >
+            <div class="img-parallax-wrapper">
+              <img
+                data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop"
+                class="gsap-parallax w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 lazy-observe"
+                alt="Japandi Theme"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
+            <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-[0.2em] uppercase mb-3 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100"
+              >
+                02 — Style
+              </p>
+              <h3
+                class="font-serif text-4xl text-white font-bold mb-0 transform translate-y-4 group-hover:-translate-y-2 transition-transform duration-500"
+              >
+                Japandi
+              </h3>
+              <div
+                class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-4 transition-all duration-500"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-white text-sm font-medium border-b border-brand-yellow pb-1"
+                  >Jelajahi Desain <i class="ph-bold ph-arrow-right"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 3. Modern (Square) -->
+          <a
+            href="/theme/modern"
+            class="gsap-card group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-500 col-span-1 row-span-1 block"
+          >
+            <div class="img-parallax-wrapper">
+              <img
+                data-src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop"
+                class="gsap-parallax w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 lazy-observe"
+                alt="Modern Theme"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
+            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-[0.2em] uppercase mb-3 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100"
+              >
+                03 — Style
+              </p>
+              <h3
+                class="font-serif text-3xl text-white font-bold mb-0 transform translate-y-4 group-hover:-translate-y-2 transition-transform duration-500"
+              >
+                Modern
+              </h3>
+              <div
+                class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-4 transition-all duration-500"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-white text-sm font-medium border-b border-brand-yellow pb-1"
+                  >Jelajahi Desain <i class="ph-bold ph-arrow-right"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 4. Mediterania (Square) -->
+          <a
+            href="/theme/mediterania"
+            class="gsap-card group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-500 col-span-1 row-span-1 block"
+          >
+            <div class="img-parallax-wrapper">
+              <img
+                data-src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop"
+                class="gsap-parallax w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 lazy-observe"
+                alt="Mediterania Theme"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
+            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-[0.2em] uppercase mb-3 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100"
+              >
+                04 — Style
+              </p>
+              <h3
+                class="font-serif text-3xl text-white font-bold mb-0 transform translate-y-4 group-hover:-translate-y-2 transition-transform duration-500"
+              >
+                Mediterania
+              </h3>
+              <div
+                class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-4 transition-all duration-500"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-white text-sm font-medium border-b border-brand-yellow pb-1"
+                  >Jelajahi Desain <i class="ph-bold ph-arrow-right"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 5. Industrial (Tall - Spans 2 rows, on the left) -->
+          <a
+            href="/theme/industrial"
+            class="gsap-card group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-500 col-span-1 row-span-1 md:row-span-2 block"
+          >
+            <div class="img-parallax-wrapper">
+              <img
+                data-src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=800&auto=format&fit=crop"
+                class="gsap-parallax w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 lazy-observe"
+                alt="Industrial Theme"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
+            <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-[0.2em] uppercase mb-3 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100"
+              >
+                05 — Style
+              </p>
+              <h3
+                class="font-serif text-4xl text-white font-bold mb-0 transform translate-y-4 group-hover:-translate-y-2 transition-transform duration-500"
+              >
+                Industrial
+              </h3>
+              <div
+                class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-4 transition-all duration-500"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-white text-sm font-medium border-b border-brand-yellow pb-1"
+                  >Jelajahi Desain <i class="ph-bold ph-arrow-right"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 6. Wabi-Sabi (Wide - Spans 2 columns) -->
+          <a
+            href="/theme/wabi-sabi"
+            class="gsap-card group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-500 md:col-span-2 lg:col-span-2 row-span-1 block"
+          >
+            <div class="img-parallax-wrapper">
+              <img
+                data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop"
+                class="gsap-parallax w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 lazy-observe"
+                alt="Wabi-Sabi Theme"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
+            <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-[0.2em] uppercase mb-3 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100"
+              >
+                06 — Style
+              </p>
+              <h3
+                class="font-serif text-4xl md:text-5xl text-white font-bold mb-0 transform translate-y-4 group-hover:-translate-y-2 transition-transform duration-500"
+              >
+                Wabi-Sabi
+              </h3>
+              <div
+                class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-4 transition-all duration-500"
+              >
+                <span
+                  class="inline-flex items-center gap-2 text-white text-sm font-medium border-b border-brand-yellow pb-1"
+                  >Jelajahi Desain <i class="ph-bold ph-arrow-right"></i
+                ></span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Call to Action & Footer (Persis dengan Halaman Utama) -->
+    <footer
+      id="contact"
+      class="bg-brand-dark text-white pt-32 pb-10 border-t-8 border-brand-yellow"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="grid lg:grid-cols-12 gap-16 mb-20 border-b border-white/10 pb-20 items-center"
+        >
+          <div class="lg:col-span-6 gsap-fade-up">
+            <h2
+              class="font-serif text-5xl md:text-7xl font-bold mb-8 leading-[1.05] tracking-tight"
+            >
+              Wujudkan <br />
+              <span class="italic text-brand-tan font-light">Mimpi Anda.</span>
+            </h2>
+            <p class="text-gray-400 mb-12 max-w-md text-lg leading-relaxed">
+              Jarak bukan halangan. Melalui sistem digital kami, Langit
+              Langit.id (Lala) siap merancang hunian terbaik di seluruh
+              Indonesia.
+            </p>
+            <div class="flex flex-col gap-6 border-l border-white/20 pl-6">
+              <a
+                href="mailto:langitlangit.id@gmail.com"
+                class="flex items-center gap-4 text-white hover:text-brand-tan transition-colors group"
+              >
+                <i
+                  class="ph ph-envelope-simple text-2xl text-gray-500 group-hover:text-brand-tan transition-colors"
+                ></i>
+                <span class="text-lg font-medium tracking-wide"
+                  >langitlangit.id@gmail.com</span
+                >
+              </a>
+              <a
+                href="tel:+6281222250143"
+                class="flex items-center gap-4 text-white hover:text-brand-tan transition-colors group"
+              >
+                <i
+                  class="ph ph-whatsapp-logo text-2xl text-gray-500 group-hover:text-brand-tan transition-colors"
+                ></i>
+                <span class="text-lg font-medium tracking-wide"
+                  >+62 81 2222 50143</span
+                >
+              </a>
+              <div class="flex items-center gap-4 text-gray-400 mt-4">
+                <i class="ph ph-map-pin text-2xl text-gray-500"></i>
+                <span class="text-sm">Depok, Jawa Barat, Indonesia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 flex justify-end gsap-fade-up">
+            <div
+              class="bg-white text-brand-dark p-10 md:p-12 rounded-[32px] w-full max-w-[500px]"
+            >
+              <h3 class="text-3xl font-bold mb-8 tracking-tight">
+                Mulai Konsultasi
+              </h3>
+              <form
+                onsubmit="
+                  event.preventDefault();
+                  alert('Permintaan berhasil dikirim!');
+                "
+                class="space-y-6"
+              >
+                <div>
+                  <label
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2"
+                    >Nama Lengkap</label
+                  >
+                  <input
+                    type="text"
+                    required
+                    class="w-full bg-transparent border-b-2 border-gray-200 px-0 py-2 text-brand-dark focus:outline-none focus:border-brand-blue transition-colors"
+                    placeholder="Ketik nama Anda..."
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2"
+                    >WhatsApp / Telp</label
+                  >
+                  <input
+                    type="tel"
+                    required
+                    class="w-full bg-transparent border-b-2 border-gray-200 px-0 py-2 text-brand-dark focus:outline-none focus:border-brand-blue transition-colors"
+                    placeholder="0812..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl hover:bg-brand-dark transition-colors mt-6 flex justify-center items-center gap-2 group shadow-lg shadow-brand-blue/20"
+                >
+                  Kirim Pesan
+                  <i
+                    class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-6"
+        >
+          <div
+            class="flex items-center gap-2 font-serif font-bold text-2xl text-white tracking-wide"
+          >
+            <img
+              src="https://iili.io/B2YU9wP.png"
+              class="h-6 object-contain invert brightness-0"
+              alt="Logo"
+            />
+          </div>
+          <p>&copy; 2026 Langit Langit.id. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-brand-tan transition-colors text-2xl"
+              ><i class="ph-fill ph-instagram-logo"></i
+            ></a>
+            <a href="#" class="hover:text-brand-tan transition-colors text-2xl"
+              ><i class="ph-fill ph-tiktok-logo"></i
+            ></a>
+            <a href="#" class="hover:text-brand-tan transition-colors text-2xl"
+              ><i class="ph-fill ph-youtube-logo"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // ADVANCED LAZY LOADING
+        const imageObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.onload = () => {
+                  img.classList.add("lazy-loaded");
+                };
+                observer.unobserve(img);
+              }
+            });
+          },
+          { rootMargin: "50px 0px" },
+        );
+
+        document.querySelectorAll("img.lazy-observe").forEach((img) => {
+          imageObserver.observe(img);
+        });
+
+        // HERO ANIMATION
+        gsap.from(".gsap-hero-el", {
+          y: 40,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+          delay: 0.1,
+        });
+
+        // TITLE FADE
+        gsap.from(".gsap-title", {
+          scrollTrigger: { trigger: "#catalogue-grid", start: "top 80%" },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.2,
+        });
+
+        // GRID STAGGER REVEAL
+        gsap.fromTo(
+          ".gsap-card",
+          { y: 80, opacity: 0 },
+          {
+            scrollTrigger: { trigger: "#catalogue-grid", start: "top 70%" },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+          },
+        );
+
+        // PARALLAX EFFECT FOR GRID IMAGES
+        // Memastikan gambar bergerak ke bawah (yPercent) saat card di-scroll ke atas
+        gsap.utils.toArray(".gsap-card").forEach((card) => {
+          const img = card.querySelector(".gsap-parallax");
+          gsap.to(img, {
+            yPercent: 15, // Travel distance
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+
+        // FOOTER FADE UPS
+        gsap.utils.toArray(".gsap-fade-up").forEach((elem) => {
+          gsap.fromTo(
+            elem,
+            { y: 40, opacity: 0 },
+            {
+              scrollTrigger: { trigger: elem, start: "top 85%" },
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+            },
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

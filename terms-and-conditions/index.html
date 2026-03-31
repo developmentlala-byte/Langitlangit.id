@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Conditions - Langit Langit.id</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: "#135A86",
+                tan: "#DBBFA0",
+                yellow: "#FED818",
+                cream: "#FFFD5F",
+                dark: "#363430",
+                light: "#FAFAFA",
+                bgdark: "#31302C",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #ffffff;
+        color: #363430;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .glass-nav {
+        background: rgba(250, 250, 250, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(219, 191, 160, 0.2);
+      }
+
+      ::selection {
+        background-color: #fed818;
+        color: #363430;
+      }
+
+      /* Editorial Typography Styles */
+      .policy-content h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #363430;
+        margin-top: 3rem;
+        margin-bottom: 1.25rem;
+      }
+
+      @media (min-width: 768px) {
+        .policy-content h2 {
+          font-size: 2rem;
+        }
+      }
+
+      .policy-content p {
+        color: #4b5563; /* text-gray-600 */
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .policy-content ul,
+      .policy-content ol {
+        color: #4b5563;
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .policy-content ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+      }
+
+      .policy-content ol {
+        list-style-type: decimal;
+        padding-left: 1.5rem;
+      }
+
+      .policy-content li {
+        margin-bottom: 0.75rem;
+      }
+
+      .policy-content strong {
+        font-weight: 600;
+        color: #363430;
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- Modal Search Halaman -->
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-[100] bg-black/60 hidden flex items-center justify-center backdrop-blur-sm transition-opacity"
+    >
+      <div
+        class="bg-white rounded-2xl w-full max-w-lg p-8 mx-4 shadow-2xl relative"
+      >
+        <button
+          onclick="closeSearch()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-brand-dark transition-colors"
+        >
+          <i class="ph-bold ph-x text-2xl"></i>
+        </button>
+        <h3 class="text-2xl font-serif font-bold text-brand-dark mb-2">
+          Pencarian
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Temukan artikel, layanan, atau portofolio desain kami.
+        </p>
+        <form action="/search" method="GET" class="flex gap-4">
+          <input
+            type="text"
+            name="q"
+            id="search-input"
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors"
+            placeholder="Ketik kata kunci..."
+            required
+          />
+          <button
+            type="submit"
+            class="bg-brand-dark text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-blue transition-colors shadow-md"
+          >
+            Cari
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+    <script src="/components/navbar.js"></script>
+
+    <!-- Header Section -->
+    <header
+      class="pt-40 lg:pt-48 pb-16 lg:pb-24 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden"
+    >
+      <!-- Decorative Element -->
+      <div
+        class="absolute right-0 top-0 w-1/2 h-full bg-brand-tan/5 blur-[120px] pointer-events-none rounded-full transform translate-x-1/3 -translate-y-1/4"
+      ></div>
+
+      <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <span
+          class="gsap-fade-up inline-block text-brand-blue font-bold tracking-[0.2em] uppercase text-xs mb-6 px-4 py-1.5 rounded-full border border-brand-blue/20"
+        >
+          Information & Legal
+        </span>
+        <h1
+          class="gsap-fade-up font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-brand-dark mb-8 leading-tight tracking-tight"
+        >
+          Terms & Conditions
+        </h1>
+        <p class="gsap-fade-up text-gray-500 text-lg">
+          Syarat & Ketentuan Layanan <br class="md:hidden" />
+          <span class="hidden md:inline">|</span> Terakhir Diperbarui: 26
+          Februari 2026
+        </p>
+      </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="py-20 lg:py-24 bg-white relative z-10">
+      <div class="max-w-3xl mx-auto px-6">
+        <!-- Document Content -->
+        <article class="policy-content">
+          <div class="gsap-fade-up">
+            <p
+              class="text-xl md:text-2xl font-serif text-brand-dark leading-relaxed mb-12 text-center"
+            >
+              Selamat datang di
+              <strong class="text-brand-blue">langitlangit.id</strong>.
+            </p>
+            <p>
+              Syarat & Ketentuan ini mengatur penggunaan situs web kami dan
+              layanan yang kami tawarkan. Dengan mengakses atau menggunakan
+              situs dan layanan kami, Anda setuju untuk terikat oleh ketentuan
+              ini.
+            </p>
+          </div>
+
+          <div class="gsap-fade-up">
+            <h2>1. Layanan Kami</h2>
+            <p>
+              langitlangit.id menyediakan layanan di bidang perancangan dan
+              pelaksanaan fisik bangunan, termasuk namun tidak terbatas pada:
+            </p>
+            <ul>
+              <li>Desain Arsitektur (Konsep, Fasad, Denah)</li>
+              <li>Desain Interior & 3D Rendering</li>
+              <li>Pembuatan Custom Furniture</li>
+              <li>Konstruksi Sipil & Pelaksanaan Bangunan</li>
+            </ul>
+            <p>
+              Segala detail spesifikasi, ruang lingkup pekerjaan, dan harga akan
+              diatur lebih lanjut dalam
+              <strong>Kontrak Perjanjian Kerja</strong> yang terpisah untuk
+              setiap proyek.
+            </p>
+          </div>
+
+          <div class="gsap-fade-up">
+            <h2>2. Kewajiban Klien</h2>
+            <p>Sebagai klien atau pengguna layanan, Anda berkewajiban untuk:</p>
+            <ul>
+              <li>
+                Memberikan informasi, ukuran (jika pengukuran mandiri), dan
+                dokumen (seperti sertifikat tanah/IMB) yang akurat dan lengkap
+                sesuai kebutuhan proyek.
+              </li>
+              <li>
+                Bekerja sama dengan tim kami untuk kelancaran survei lapangan
+                dan proses pengerjaan.
+              </li>
+              <li>
+                Melakukan pembayaran tepat waktu sesuai dengan termin yang telah
+                disepakati dalam kontrak.
+              </li>
+            </ul>
+          </div>
+
+          <div class="gsap-fade-up">
+            <h2>3. Hak Kekayaan Intelektual</h2>
+            <p>
+              Seluruh konten di situs ini (teks, gambar, logo, portofolio) serta
+              hasil karya desain (gambar kerja, konsep 3D) adalah hak milik
+              eksklusif <strong>langitlangit.id</strong>. Karya desain yang
+              dibuat khusus untuk klien hanya boleh digunakan untuk kepentingan
+              pembangunan proyek yang bersangkutan dan tidak untuk dijual
+              kembali atau direproduksi oleh pihak ketiga tanpa izin tertulis
+              dari kami, kecuali hak cipta tersebut telah dibeli secara terpisah
+              oleh klien.
+            </p>
+          </div>
+
+          <div class="gsap-fade-up">
+            <h2>4. Harga & Pembayaran</h2>
+            <p>
+              Estimasi biaya yang tercantum di situs web atau materi promosi
+              kami bersifat indikatif. Harga akhir akan ditentukan berdasarkan
+              hasil survei, kebutuhan material, dan kompleksitas desain. Syarat
+              pembayaran (Term of Payment) seperti besaran Uang Muka (DP) dan
+              termin pelunasan akan diuraikan secara rinci dalam Surat Penawaran
+              Harga (SPH) atau Kontrak Kerja yang harus disetujui bersama
+              sebelum pekerjaan dimulai.
+            </p>
+          </div>
+
+          <div class="gsap-fade-up">
+            <h2>5. Perubahan Ketentuan</h2>
+            <p>
+              Kami berhak untuk mengubah, memodifikasi, menambah, atau menghapus
+              bagian dari Syarat & Ketentuan ini kapan saja tanpa pemberitahuan
+              sebelumnya. Merupakan tanggung jawab Anda untuk memeriksa halaman
+              ini secara berkala. Penggunaan layanan secara berkelanjutan
+              setelah adanya perubahan menandakan bahwa Anda menerima dan
+              menyetujui perubahan tersebut.
+            </p>
+          </div>
+
+          <!-- Contact Box -->
+          <div
+            class="gsap-fade-up mt-20 p-8 md:p-12 bg-brand-light border border-gray-100 rounded-[2rem]"
+          >
+            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-6">
+              6. Hubungi Kami
+            </h3>
+            <p class="text-gray-600 mb-8">
+              Jika Anda memiliki pertanyaan terkait Syarat & Ketentuan ini atau
+              ingin mendiskusikan kontrak kerja sama, silakan hubungi kami
+              melalui:
+            </p>
+            <ul class="space-y-4 m-0 p-0 list-none">
+              <li class="flex items-center gap-4 text-gray-700 m-0">
+                <div
+                  class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-brand-blue shadow-sm shrink-0"
+                >
+                  <i class="ph-bold ph-envelope-simple text-xl"></i>
+                </div>
+                <div>
+                  <span
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400"
+                    >Email</span
+                  >
+                  <a
+                    href="mailto:support@langitlangit.id"
+                    class="text-brand-dark font-medium hover:text-brand-blue transition-colors"
+                    >support@langitlangit.id</a
+                  >
+                </div>
+              </li>
+              <li class="flex items-center gap-4 text-gray-700 m-0">
+                <div
+                  class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-brand-blue shadow-sm shrink-0"
+                >
+                  <i class="ph-bold ph-phone text-xl"></i>
+                </div>
+                <div>
+                  <span
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400"
+                    >Telepon / Whatsapp</span
+                  >
+                  <a
+                    href="tel:+6281222250143"
+                    class="text-brand-dark font-medium hover:text-brand-blue transition-colors"
+                    >+62 812-2225-0143</a
+                  >
+                </div>
+              </li>
+              <li class="flex items-center gap-4 text-gray-700 m-0">
+                <div
+                  class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-brand-blue shadow-sm shrink-0"
+                >
+                  <i class="ph-bold ph-map-pin text-xl"></i>
+                </div>
+                <div>
+                  <span
+                    class="block text-xs font-bold uppercase tracking-wider text-gray-400"
+                    >Alamat Kantor</span
+                  >
+                  <span class="text-brand-dark font-medium leading-snug block"
+                    >Jl. Margonda Raya No. 100, Depok, Jawa Barat, Indonesia
+                    16424</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <style>
+      .custom-footer {
+        background-color: #111827;
+        color: #d1d5db;
+        padding: 6rem 0 3rem 0;
+      }
+      .custom-footer a {
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+      }
+      .custom-footer a:hover {
+        color: #3b82f6;
+      }
+      .footer-title {
+        color: #ffffff;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        font-size: 1.125rem;
+      }
+      .custom-footer-bottom {
+        border-top: 1px solid #1f2937;
+        padding-top: 2rem;
+        margin-top: 3rem;
+        color: #6b7280;
+        font-size: 0.875rem;
+      }
+    </style>
+    <footer class="custom-footer" id="contact">
+      <div class="max-w-[90rem] mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Column 1: Brand & About -->
+          <div class="gsap-footer-item">
+            <a href="/" class="flex items-center gap-2 mb-6">
+              <img
+                src="https://iili.io/B2YSyAB.png"
+                alt="Langit Langit Logo"
+                class="h-10 object-contain invert brightness-0"
+                onerror="this.style.display = 'none'"
+              />
+            </a>
+            <p class="mb-6 text-sm leading-relaxed max-w-xs">
+              Solusi terbaik untuk pengalaman interior digital Anda. Kami
+              berkomitmen memberikan layanan desain terpercaya, fungsional, dan
+              berkualitas tinggi untuk seluruh pelanggan di Indonesia.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-facebook-logo text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                aria-label="Twitter"
+                class="hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-twitter-logo text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-instagram-logo text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                class="hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-linkedin-logo text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="gsap-footer-item lg:ml-auto">
+            <h3 class="footer-title">Jelajahi</h3>
+            <ul class="space-y-3 text-sm">
+              <li><a href="/">Beranda</a></li>
+              <li><a href="/page1.html">Catalogue</a></li>
+              <li><a href="/page4.html">Portfolio</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Legal & Policies -->
+          <div class="gsap-footer-item">
+            <h3 class="footer-title">Pusat Bantuan & Legal</h3>
+            <ul class="space-y-3 text-sm">
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li>
+                <a href="return-refund-policy.html">Return & Refund Policy</a>
+              </li>
+              <li><a href="delivery-policy.html">Delivery Policy</a></li>
+              <li>
+                <a
+                  href="terms-and-conditions.html"
+                  class="text-brand-blue font-semibold"
+                  >Terms & Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Contact Info -->
+          <div class="gsap-footer-item">
+            <h3 class="footer-title">Hubungi Kami</h3>
+            <ul class="space-y-4 text-sm">
+              <li class="flex items-start gap-3">
+                <i
+                  class="ph-bold ph-map-pin text-brand-blue text-lg mt-0.5"
+                ></i>
+                <span class="leading-relaxed"
+                  >Jl. Margonda Raya No. 100, Depok, Jawa Barat, Indonesia
+                  16424</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="ph-bold ph-phone text-brand-blue text-lg"></i>
+                <a href="https://wa.me/6281222250143">+62 812-2225-0143</a>
+              </li>
+              <li class="flex items-center gap-3">
+                <i
+                  class="ph-bold ph-envelope-simple text-brand-blue text-lg"
+                ></i>
+                <a href="mailto:support@langitlangit.id"
+                  >support@langitlangit.id</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Bar: Copyright -->
+        <div
+          class="custom-footer-bottom flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="mb-0">&copy; 2026 langitlangit.id. Hak Cipta Dilindungi.</p>
+          <p class="mb-0">Didesain dengan ❤️ di Indonesia</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // CONTENT FADE UPS
+        gsap.utils.toArray(".gsap-fade-up").forEach((elem) => {
+          gsap.fromTo(
+            elem,
+            { y: 30, opacity: 0 },
+            {
+              scrollTrigger: { trigger: elem, start: "top 85%" },
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+            },
+          );
+        });
+
+        // FOOTER REVEAL
+        gsap.fromTo(
+          ".gsap-footer-item",
+          { y: 40, opacity: 0 },
+          {
+            scrollTrigger: { trigger: ".custom-footer", start: "top 85%" },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+          },
+        );
+      });
+    </script>
+  </body>
+</html>
