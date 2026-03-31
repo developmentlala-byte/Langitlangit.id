@@ -82,13 +82,19 @@
       .gsap-fade-up,
       .gsap-service-card,
       .gsap-price,
-      .portfolio-horizontal-container,
       .parallax-hero-img,
       .parallax-img-slow {
         will-change: transform, opacity;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         transform: translateZ(0); /* 3D acceleration trigger */
+      }
+
+      .portfolio-horizontal-container {
+        will-change: transform; /* Dioptimalkan hanya transform untuk container horizontal */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
       }
 
       /* Advanced Smooth Image Loading (Untuk gambar Below-The-Fold) */
@@ -1672,7 +1678,7 @@
           },
         );
 
-        // 5. HORIZONTAL SCROLL PORTFOLIO
+        // 5. HORIZONTAL SCROLL PORTFOLIO (SMOOTH PINNING)
         const horizontalSection = document.querySelector(
           ".portfolio-horizontal-wrapper",
         );
@@ -1683,21 +1689,35 @@
         if (horizontalSection && horizontalContainer) {
           function getScrollAmount() {
             let containerWidth = horizontalContainer.scrollWidth;
-            return -(containerWidth - window.innerWidth);
+            // Tambah padding akhir agar elemen terakhir tidak menabrak batas
+            return -(
+              containerWidth -
+              window.innerWidth +
+              window.innerWidth * 0.05
+            );
           }
 
-          const tween = gsap.to(horizontalContainer, {
-            x: getScrollAmount,
-            ease: "none",
-          });
+          // DEAD ZONE TRICK: Mencegah efek "patah" saat pin menempel dan lepas
+          const tl = gsap.timeline();
+
+          // Jeda singkat sebelum mulai geser (mencegah patahan saat nempel)
+          tl.to({}, { duration: 0.05 })
+            // Scroll horizontal utama
+            .to(horizontalContainer, {
+              x: getScrollAmount,
+              ease: "none",
+              duration: 1,
+            })
+            // Jeda singkat setelah selesai geser (mencegah patahan saat lepas)
+            .to({}, { duration: 0.05 });
 
           ScrollTrigger.create({
             trigger: "#portfolio",
             start: "top top",
-            end: () => `+=${getScrollAmount() * -1}`,
+            end: () => `+=${getScrollAmount() * -1 + 300}`, // Tambah ruang extra agar durasi scroll lebih rileks
             pin: true,
-            animation: tween,
-            scrub: 1.2,
+            animation: tl,
+            scrub: 1, // Diubah menjadi 1 agar sinkronisasi lebih akurat
             anticipatePin: 1,
             invalidateOnRefresh: true,
           });
