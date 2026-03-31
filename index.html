@@ -28,13 +28,12 @@
     />
 
     <!-- Tailwind CSS CDN -->
-    <!-- CATATAN: Untuk meraih skor A sempurna 100%, Anda wajib mengkompilasi Tailwind menggunakan CLI/NPM menjadi file style.css murni. Penggunaan CDN script ini adalah penyebab utama TBT 305ms di GTMetrix. -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Phosphor Icons (Di-defer agar tidak memblokir render HTML) -->
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
-    <!-- Tailwind Configuration (Original Colors) -->
+    <!-- Tailwind Configuration -->
     <script>
       tailwind.config = {
         theme: {
@@ -73,11 +72,30 @@
         border-bottom: 1px solid rgba(219, 191, 160, 0.2);
       }
 
+      /* * OPTIMASI GSAP HARDWARE ACCELERATION 
+       * Memaksa browser menggunakan GPU untuk elemen yang akan dianimasikan
+       * Mencegah efek "patah-patah" (jitter) saat dirender
+       */
+      .gsap-hero-text,
+      .gsap-hero-center-img,
+      .gsap-hero-right,
+      .gsap-fade-up,
+      .gsap-service-card,
+      .gsap-price,
+      .portfolio-horizontal-container,
+      .parallax-hero-img,
+      .parallax-img-slow {
+        will-change: transform, opacity;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0); /* 3D acceleration trigger */
+      }
+
       /* Advanced Smooth Image Loading (Untuk gambar Below-The-Fold) */
       img.lazy-observe {
         opacity: 0;
         filter: blur(10px) brightness(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05) translateZ(0);
         transition:
           opacity 0.8s ease-in-out,
           filter 0.8s ease-in-out,
@@ -86,7 +104,7 @@
       img.lazy-loaded {
         opacity: 1;
         filter: blur(0) brightness(1);
-        transform: scale(1);
+        transform: scale(1) translateZ(0);
       }
 
       /* Native Fast Loading Image transition (Untuk Smart Hero Loader) */
@@ -112,6 +130,7 @@
       .marquee-content {
         display: flex;
         animation: marquee 35s linear infinite;
+        will-change: transform;
       }
       @keyframes marquee {
         0% {
@@ -416,7 +435,7 @@
                 </div>
               </div>
 
-              <!-- Carousel Controls (Responsif dan sama persis Screenshot) -->
+              <!-- Carousel Controls -->
               <div class="flex items-center gap-6 mt-4">
                 <div class="flex items-center gap-5 text-gray-400">
                   <button
@@ -1588,11 +1607,11 @@
 
         // 2. HERO ANIMATIONS
         gsap.from(".gsap-hero-text", {
-          y: 50,
+          y: 40,
           opacity: 0,
           duration: 1.2,
           stagger: 0.15,
-          ease: "power4.out",
+          ease: "power3.out",
           delay: 0.2,
         });
 
@@ -1600,15 +1619,15 @@
           clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
           y: 40,
           opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
+          duration: 1.2,
+          ease: "power3.out",
           delay: 0.5,
         });
 
         gsap.from(".gsap-hero-right", {
           x: 30,
           opacity: 0,
-          duration: 1,
+          duration: 1.2,
           stagger: 0.2,
           ease: "power3.out",
           delay: 1,
@@ -1621,7 +1640,7 @@
             trigger: "#hero",
             start: "top top",
             end: "bottom top",
-            scrub: true,
+            scrub: 1.2,
           },
         });
 
@@ -1634,7 +1653,7 @@
               trigger: img.parentElement,
               start: "top bottom",
               end: "bottom top",
-              scrub: true,
+              scrub: 1.2,
             },
           });
         });
@@ -1642,12 +1661,12 @@
         // 4. LAYANAN
         gsap.fromTo(
           ".gsap-service-card",
-          { y: 60, opacity: 0 },
+          { y: 40, opacity: 0 },
           {
             scrollTrigger: { trigger: "#services", start: "top 60%" },
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 1.2,
             stagger: 0.2,
             ease: "power3.out",
           },
@@ -1678,7 +1697,8 @@
             end: () => `+=${getScrollAmount() * -1}`,
             pin: true,
             animation: tween,
-            scrub: 1,
+            scrub: 1.2,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
           });
         }
@@ -1689,7 +1709,7 @@
             trigger: "#workflow",
             start: "top 50%",
             end: "bottom 70%",
-            scrub: 0.5,
+            scrub: 1.2,
           },
           height: "100%",
           ease: "none",
@@ -1698,12 +1718,12 @@
         gsap.utils.toArray(".gsap-step").forEach((step) => {
           gsap.fromTo(
             step,
-            { y: 50, opacity: 0 },
+            { y: 40, opacity: 0 },
             {
               scrollTrigger: { trigger: step, start: "top 75%" },
               y: 0,
               opacity: 1,
-              duration: 1,
+              duration: 1.2,
               ease: "power3.out",
             },
           );
@@ -1718,7 +1738,7 @@
               scrollTrigger: { trigger: elem, start: "top 85%" },
               y: 0,
               opacity: 1,
-              duration: 1,
+              duration: 1.2,
               ease: "power3.out",
             },
           );
@@ -1726,12 +1746,12 @@
 
         gsap.fromTo(
           ".gsap-price",
-          { y: 50, opacity: 0 },
+          { y: 40, opacity: 0 },
           {
             scrollTrigger: { trigger: "#pricing", start: "top 75%" },
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            duration: 1.2,
             stagger: 0.15,
             ease: "power3.out",
           },
