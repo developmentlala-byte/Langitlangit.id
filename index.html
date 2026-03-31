@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Langit Langit.id | Architecture & Interior Design</title>
 
-    <!-- OPTIMASI 1: Preconnect & DNS Prefetch ke Server Gambar (Mempercepat LCP) -->
+    <!-- OPTIMASI 1: Preconnect & DNS Prefetch (Mempercepat Resolusi Server) -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://iili.io" crossorigin />
     <link rel="dns-prefetch" href="https://iili.io" />
 
-    <!-- OPTIMASI 2: Preload Gambar Hero Utama -->
+    <!-- OPTIMASI 2: Preload Gambar Hero Utama (Meningkatkan LCP) -->
     <link
       rel="preload"
       as="image"
@@ -72,18 +72,28 @@
         border-bottom: 1px solid rgba(219, 191, 160, 0.2);
       }
 
-      /* OPTIMASI 3: Hardware Acceleration Terfokus (Mencegah Overload GPU) */
-      .portfolio-horizontal-container,
+      /* OPTIMASI 3: Hardware Acceleration.
+       * Dihapus "will-change" masif karena membebani memori GPU (penyebab performa turun).
+       * Hanya digunakan pada container horizontal yang paling berat.
+       */
+      .gsap-hero-text,
+      .gsap-hero-center-img,
+      .gsap-hero-right,
+      .gsap-fade-up,
+      .gsap-service-card,
+      .gsap-price,
       .parallax-hero-img,
       .parallax-img-slow,
       .gsap-stat-item {
-        will-change: transform, opacity;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+        transform: translateZ(0); /* 3D acceleration ringan */
+      }
+
+      .portfolio-horizontal-container {
+        will-change: transform;
         transform: translateZ(0);
       }
 
-      /* Advanced Smooth Image Loading (Untuk gambar Below-The-Fold) */
+      /* Advanced Smooth Image Loading (Hanya untuk gambar Below-The-Fold) */
       img.lazy-observe {
         opacity: 0;
         filter: blur(10px) brightness(1.05);
@@ -97,11 +107,6 @@
         opacity: 1;
         filter: blur(0) brightness(1);
         transform: scale(1) translateZ(0);
-      }
-
-      /* Native Fast Loading Image transition (Untuk Smart Hero Loader) */
-      .native-fade-in {
-        transition: opacity 0.8s ease-in-out;
       }
 
       /* Loading Spinner Positioning */
@@ -122,7 +127,7 @@
       .marquee-content {
         display: flex;
         animation: marquee 35s linear infinite;
-        will-change: transform;
+        transform: translateZ(0);
       }
       @keyframes marquee {
         0% {
@@ -218,13 +223,13 @@
                 Klien yang telah mempercayakan desain ruang impiannya kepada
                 kami.
               </p>
-              <!-- Avatar di Atas Lipatan: Menggunakan Native Load, Atribut Width/Height eksplisit untuk mencegah CLS (Berdasarkan laporan GTMetrix) -->
+
+              <!-- OPTIMASI 4: Avatars diset Lazy, agar bandwidth fokus pada Hero Image Utama (LCP) -->
               <div class="flex -space-x-3">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
-                  loading="eager"
-                  decoding="sync"
-                  fetchpriority="high"
+                  loading="lazy"
+                  decoding="async"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -232,9 +237,8 @@
                 />
                 <img
                   src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
-                  loading="eager"
-                  decoding="sync"
-                  fetchpriority="high"
+                  loading="lazy"
+                  decoding="async"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -242,9 +246,8 @@
                 />
                 <img
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop"
-                  loading="eager"
-                  decoding="sync"
-                  fetchpriority="high"
+                  loading="lazy"
+                  decoding="async"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -252,9 +255,8 @@
                 />
                 <img
                   src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop"
-                  loading="eager"
-                  decoding="sync"
-                  fetchpriority="high"
+                  loading="lazy"
+                  decoding="async"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -268,14 +270,10 @@
           <div
             class="lg:col-span-4 h-[400px] md:h-[550px] lg:h-auto min-h-[400px] w-full order-1 lg:order-2"
           >
-            <!-- SMART HERO LOADER: Spinner background jalan, tapi gambar langsung ditarik native HTML (Solusi LCP Hijau GTMetrix) -->
+            <!-- OPTIMASI LCP: Tidak ada class opacity-0 atau native-fade-in. Gambar dipaksa tampil seketika saat diunduh -->
             <div
               class="w-full h-full rounded-[32px] overflow-hidden relative shadow-2xl gsap-hero-center-img bg-gray-200 flex items-center justify-center"
             >
-              <i
-                class="ph ph-spinner-gap animate-spin text-4xl text-gray-400 absolute z-0"
-              ></i>
-
               <img
                 src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
                 alt="Modern Architecture"
@@ -284,12 +282,8 @@
                 decoding="sync"
                 width="800"
                 height="1200"
-                class="w-full h-full object-cover parallax-hero-img transform scale-110 absolute inset-0 z-10 opacity-0 native-fade-in"
-                onload="
-                  this.classList.remove('opacity-0');
-                  this.previousElementSibling.style.display = 'none';
-                  this.parentElement.classList.remove('bg-gray-200');
-                "
+                class="w-full h-full object-cover parallax-hero-img transform scale-110 absolute inset-0 z-10"
+                onload="this.parentElement.classList.remove('bg-gray-200')"
               />
 
               <div
@@ -321,45 +315,39 @@
                   id="hero-carousel-track"
                   class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar w-full pb-2"
                 >
-                  <!-- Card 1 (Dibuat Native Load krn Above Fold) -->
+                  <!-- Card 1 -->
                   <div
-                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center"
+                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
                   >
                     <i
-                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute"
+                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute img-loading-spinner"
                     ></i>
                     <img
-                      src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=400&fit=crop"
-                      loading="eager"
-                      fetchpriority="high"
+                      data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=400&fit=crop"
                       width="400"
                       height="300"
-                      class="w-full h-full object-cover absolute inset-0 z-10 opacity-0 native-fade-in"
+                      class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 1"
-                      onload="this.classList.remove('opacity-0')"
                     />
                   </div>
 
-                  <!-- Card 2 (Dibuat Native Load krn Above Fold) -->
+                  <!-- Card 2 -->
                   <div
-                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center"
+                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
                   >
                     <i
-                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute"
+                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute img-loading-spinner"
                     ></i>
                     <img
-                      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&fit=crop"
-                      loading="eager"
-                      fetchpriority="high"
+                      data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&fit=crop"
                       width="400"
                       height="300"
-                      class="w-full h-full object-cover absolute inset-0 z-10 opacity-0 native-fade-in"
+                      class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 2"
-                      onload="this.classList.remove('opacity-0')"
                     />
                   </div>
 
-                  <!-- Card 3 (Below the fold/tersembunyi -> Tetap Lazy Load) -->
+                  <!-- Card 3 -->
                   <div
                     class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
                   >
@@ -518,7 +506,7 @@
           ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           <span>LOMBOK</span
           ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-
+          <!-- Duplicate for seamless loop -->
           <span>JAKARTA</span
           ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           <span>BALI</span
@@ -575,7 +563,7 @@
               class="w-24 h-24 bg-brand-yellow rounded-full absolute -top-10 -left-10 -z-10 animate-pulse"
             ></div>
             <div
-              class="relative w-full aspect-square rounded-full overflow-hidden shadow-2xl border-8 border-white bg-gray-200 animate-pulse flex items-center justify-center img-wrapper-loader"
+              class="relative w-full aspect-square rounded-full overflow-hidden shadow-2xl border-8 border-white bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
             >
               <i
                 class="ph ph-spinner-gap animate-spin text-5xl text-gray-400 absolute img-loading-spinner"
@@ -650,7 +638,7 @@
               class="gsap-counter text-5xl sm:text-6xl lg:text-[5.5rem] font-sans font-bold text-brand-blue tracking-tight mb-4"
               data-target="1048"
             >
-              1.048
+              0
             </h3>
             <p
               class="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase"
@@ -665,7 +653,7 @@
               class="gsap-counter text-5xl sm:text-6xl lg:text-[5.5rem] font-sans font-bold text-brand-tan tracking-tight mb-4"
               data-target="324"
             >
-              324
+              0
             </h3>
             <p
               class="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase"
@@ -680,7 +668,7 @@
               class="gsap-counter text-5xl sm:text-6xl lg:text-[5.5rem] font-sans font-bold text-brand-yellow tracking-tight mb-4"
               data-target="246"
             >
-              246
+              0
             </h3>
             <p
               class="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase"
@@ -941,7 +929,7 @@
       </div>
     </section>
 
-    <!-- Standar Tahapan Kerja (Circular Redesign) -->
+    <!-- Standar Tahapan Kerja -->
     <section
       id="workflow"
       class="py-24 lg:py-32 bg-white relative overflow-hidden"
@@ -962,17 +950,14 @@
           </p>
         </div>
 
-        <!-- Desktop Circular Layout (Fixed Responsiveness & Positioning) -->
+        <!-- Desktop Circular Layout -->
         <div
           class="hidden lg:flex relative w-full max-w-[850px] aspect-square mx-auto items-center justify-center gsap-fade-up"
         >
-          <!-- Circular Track / Dashed Line -->
-          <!-- We set a strict width/height on the circle instead of full container -->
           <div
             class="absolute w-[450px] h-[450px] border-[2px] border-dashed border-gray-200 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none"
           ></div>
 
-          <!-- Center Badge -->
           <div
             class="absolute z-20 bg-brand-dark text-white px-8 py-4 rounded-full flex items-center gap-3 shadow-[0_10px_30px_rgba(54,52,48,0.3)] hover:scale-105 transition-transform duration-500 cursor-default"
           >
@@ -980,8 +965,7 @@
             <span class="font-bold text-lg tracking-wide">Metodologi Lala</span>
           </div>
 
-          <!-- Nodes: Anchored to the container, perfectly centered -->
-          <!-- Step 1 (Top) -->
+          <!-- Step 1 -->
           <div
             class="absolute top-[5%] left-1/2 -translate-x-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
@@ -998,7 +982,7 @@
             </p>
           </div>
 
-          <!-- Step 2 (Right) -->
+          <!-- Step 2 -->
           <div
             class="absolute top-1/2 right-[2%] -translate-y-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
@@ -1015,7 +999,7 @@
             </p>
           </div>
 
-          <!-- Step 3 (Bottom) -->
+          <!-- Step 3 -->
           <div
             class="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
@@ -1032,7 +1016,7 @@
             </p>
           </div>
 
-          <!-- Step 4 (Left) -->
+          <!-- Step 4 -->
           <div
             class="absolute top-1/2 left-[2%] -translate-y-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
@@ -1049,7 +1033,6 @@
             </p>
           </div>
 
-          <!-- Connecting Arrows -->
           <div
             class="absolute top-[28%] right-[28%] text-gray-300 rotate-[45deg] text-3xl"
           >
@@ -1072,7 +1055,7 @@
           </div>
         </div>
 
-        <!-- Mobile Vertical Layout (Visible only on smaller screens) -->
+        <!-- Mobile Vertical Layout -->
         <div
           class="lg:hidden relative space-y-10 before:absolute before:inset-0 before:ml-8 md:before:ml-10 before:-translate-x-px md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent"
         >
@@ -1180,7 +1163,6 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-6 lg:gap-8 gsap-fade-up">
-          <!-- Trust Card 1 -->
           <div
             class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
           >
@@ -1203,7 +1185,6 @@
             >
           </div>
 
-          <!-- Trust Card 2 -->
           <div
             class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
           >
@@ -1222,7 +1203,6 @@
             </p>
           </div>
 
-          <!-- Trust Card 3 -->
           <div
             class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
           >
@@ -1321,13 +1301,11 @@
           <div
             class="gsap-price flex flex-col bg-brand-blue text-white rounded-[32px] shadow-2xl overflow-hidden transform lg:-translate-y-2 relative border border-brand-blue"
           >
-            <!-- Ribbon -->
             <div
               class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-[10px] font-bold uppercase tracking-wider px-10 py-1.5 rotate-45 translate-x-8 translate-y-5 shadow-sm"
             >
               MOST POPULAR
             </div>
-
             <div class="p-8">
               <h3 class="font-bold text-brand-yellow text-xl mb-2">
                 Paket Premium
@@ -1344,7 +1322,6 @@
               >
                 Paling lengkap. Konsep, DED, Interior, hingga RAB mendetail.
               </p>
-
               <ul class="space-y-5 text-white flex-1 mb-10 text-sm font-medium">
                 <li class="flex items-start gap-3">
                   <i
@@ -1396,7 +1373,6 @@
               >
                 Solusi spesifik untuk kamar tidur, ruang kerja, dll.
               </p>
-
               <ul class="space-y-5 text-gray-300 flex-1 mb-10 text-sm">
                 <li class="flex items-start gap-3">
                   <i
@@ -1426,7 +1402,7 @@
           </div>
         </div>
 
-        <!-- EXPLICIT REFUNDABLE INFO (Design Focus + Mitra Sipil) -->
+        <!-- EXPLICIT REFUNDABLE INFO -->
         <div
           class="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-brand-blue/5 to-transparent rounded-3xl p-6 md:p-8 border border-brand-blue/20 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-sm gsap-fade-up"
         >
@@ -1596,13 +1572,23 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Didefer agar tidak memblokir parsing HTML -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-      gsap.registerPlugin(ScrollTrigger);
-
+      // Jalankan setelah semua tag HTML selesai dimuat untuk menunda Long Tasks
       document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Membungkus script GSAP berat di dalam requestAnimationFrame + setTimeout
+        // untuk mengosongkan antrean eksekusi Main Thread dan menurunkan TBT GTMetrix.
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            initOptimizedAnimations();
+          }, 50);
+        });
+
         // 1. ADVANCED LAZY LOADING USING INTERSECTION OBSERVER WITH SKELETON LOADER
         const imageObserver = new IntersectionObserver(
           (entries, observer) => {
@@ -1610,10 +1596,8 @@
               if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.dataset.src;
-
                 img.onload = () => {
                   img.classList.add("lazy-loaded");
-
                   // Remove skeleton and spinner from parent if exists
                   const parentWrapper = img.closest(".img-wrapper-loader");
                   if (parentWrapper) {
@@ -1627,7 +1611,6 @@
                     if (spinner) spinner.style.display = "none";
                   }
                 };
-
                 observer.unobserve(img);
               }
             });
@@ -1638,47 +1621,46 @@
         document.querySelectorAll("img.lazy-observe").forEach((img) => {
           imageObserver.observe(img);
         });
+      });
 
+      function initOptimizedAnimations() {
         // 2. HERO ANIMATIONS
-        // Delayed init to give priority to main rendering (reduces TBT)
-        setTimeout(() => {
-          gsap.from(".gsap-hero-text", {
-            y: 40,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power3.out",
-          });
+        gsap.from(".gsap-hero-text", {
+          y: 40,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+        });
 
-          gsap.from(".gsap-hero-center-img", {
-            clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-            y: 40,
-            opacity: 0,
-            duration: 1.2,
-            ease: "power3.out",
-            delay: 0.2,
-          });
+        gsap.from(".gsap-hero-center-img", {
+          clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+          y: 40,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          delay: 0.2,
+        });
 
-          gsap.from(".gsap-hero-right", {
-            x: 30,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: "power3.out",
-            delay: 0.4,
-          });
+        gsap.from(".gsap-hero-right", {
+          x: 30,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power3.out",
+          delay: 0.4,
+        });
 
-          gsap.to(".parallax-hero-img", {
-            yPercent: 15,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "#hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: 1,
-            },
-          });
-        }, 100);
+        gsap.to(".parallax-hero-img", {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
 
         // 3. PARALLAX UMUM PADA GAMBAR ABOUT
         gsap.utils.toArray(".parallax-img-slow").forEach((img) => {
@@ -1705,11 +1687,10 @@
             duration: 1.2,
             stagger: 0.2,
             ease: "power3.out",
-            force3D: true,
           },
         );
 
-        // 5. HORIZONTAL SCROLL PORTFOLIO (SMOOTH PINNING Tanpa Patah)
+        // 5. HORIZONTAL SCROLL PORTFOLIO
         const horizontalSection = document.querySelector(
           ".portfolio-horizontal-wrapper",
         );
@@ -1720,7 +1701,6 @@
         if (horizontalSection && horizontalContainer) {
           function getScrollAmount() {
             let containerWidth = horizontalContainer.scrollWidth;
-            // Tambah padding akhir agar elemen terakhir tidak menabrak batas
             return -(
               containerWidth -
               window.innerWidth +
@@ -1728,10 +1708,9 @@
             );
           }
 
-          // Dihapus pause time .to({}, {duration: 0.05}) agar animasi jalan terus dan ga nyangkut
           const tween = gsap.to(horizontalContainer, {
             x: getScrollAmount,
-            ease: "none", // pastikan linear ease
+            ease: "none",
           });
 
           ScrollTrigger.create({
@@ -1740,26 +1719,11 @@
             end: () => `+=${getScrollAmount() * -1}`,
             pin: true,
             animation: tween,
-            scrub: 1.5, // ditingkatkan dikit agar mouse/trackpad smoothing lebih enak
-            anticipatePin: 1, // wajib agar pin awal ngga lompat
+            scrub: 1,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
           });
         }
-
-        // STAT ITEMS REVEAL (Dipercepat dan digabung trigger-nya agar muncul berbarengan)
-        gsap.fromTo(
-          ".gsap-stat-item",
-          { y: 30, opacity: 0 },
-          {
-            scrollTrigger: { trigger: "#stats-section", start: "top 85%" },
-            y: 0,
-            opacity: 1,
-            duration: 0.8, // Dipercepat
-            stagger: 0.15,
-            ease: "power3.out",
-            force3D: true,
-          },
-        );
 
         // 6. WORKFLOW TIMELINE ANIMATION
         gsap.to(".workflow-line", {
@@ -1783,7 +1747,6 @@
               opacity: 1,
               duration: 1.2,
               ease: "power3.out",
-              force3D: true,
             },
           );
         });
@@ -1799,7 +1762,6 @@
               opacity: 1,
               duration: 1.2,
               ease: "power3.out",
-              force3D: true,
             },
           );
         });
@@ -1814,11 +1776,10 @@
             duration: 1.2,
             stagger: 0.15,
             ease: "power3.out",
-            force3D: true,
           },
         );
 
-        // 8. ANIMASI STAT COUNTER BARU (Dipercepat dan digabung)
+        // 8. ANIMASI STAT COUNTER (Digabung trigger-nya agar muncul serentak)
         gsap.utils.toArray(".gsap-counter").forEach((counter) => {
           const target = parseInt(counter.getAttribute("data-target"));
           gsap.fromTo(
@@ -1826,11 +1787,11 @@
             { innerHTML: 0 },
             {
               innerHTML: target,
-              duration: 2.0, // Dipercepat
+              duration: 2.0,
               ease: "power3.out",
               snap: { innerHTML: 1 },
               scrollTrigger: {
-                trigger: "#stats-section", // Menggunakan satu trigger untuk ke-3 counter
+                trigger: "#stats-section",
                 start: "top 85%",
               },
               onUpdate: function () {
@@ -1845,13 +1806,13 @@
             },
           );
         });
-      });
+      }
 
       // 9. Fungsi untuk Scroll Hero Carousel
       function scrollHeroCarousel(direction) {
         const track = document.getElementById("hero-carousel-track");
         if (!track) return;
-        const scrollAmount = track.clientWidth / 2; // Scroll by roughly one item at a time
+        const scrollAmount = track.clientWidth / 2;
 
         if (direction === "left") {
           track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
