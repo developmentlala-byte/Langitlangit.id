@@ -72,26 +72,12 @@
         border-bottom: 1px solid rgba(219, 191, 160, 0.2);
       }
 
-      /* * OPTIMASI GSAP HARDWARE ACCELERATION 
-       * Memaksa browser menggunakan GPU untuk elemen yang akan dianimasikan
-       * Mencegah efek "patah-patah" (jitter) saat dirender
-       */
-      .gsap-hero-text,
-      .gsap-hero-center-img,
-      .gsap-hero-right,
-      .gsap-fade-up,
-      .gsap-service-card,
-      .gsap-price,
+      /* OPTIMASI 3: Hardware Acceleration Terfokus (Mencegah Overload GPU) */
+      .portfolio-horizontal-container,
       .parallax-hero-img,
-      .parallax-img-slow {
+      .parallax-img-slow,
+      .gsap-stat-item {
         will-change: transform, opacity;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translateZ(0); /* 3D acceleration trigger */
-      }
-
-      .portfolio-horizontal-container {
-        will-change: transform; /* Dioptimalkan hanya transform untuk container horizontal */
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         transform: translateZ(0);
@@ -232,35 +218,47 @@
                 Klien yang telah mempercayakan desain ruang impiannya kepada
                 kami.
               </p>
-              <!-- Avatar di Atas Lipatan: Menggunakan Native Load, Tanpa Script JS agar cepat -->
+              <!-- Avatar di Atas Lipatan: Menggunakan Native Load, Atribut Width/Height eksplisit untuk mencegah CLS (Berdasarkan laporan GTMetrix) -->
               <div class="flex -space-x-3">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
                   loading="eager"
                   decoding="sync"
                   fetchpriority="high"
+                  width="40"
+                  height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
+                  alt="Client Avatar"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
                   loading="eager"
                   decoding="sync"
                   fetchpriority="high"
+                  width="40"
+                  height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
+                  alt="Client Avatar"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop"
                   loading="eager"
                   decoding="sync"
                   fetchpriority="high"
+                  width="40"
+                  height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
+                  alt="Client Avatar"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop"
                   loading="eager"
                   decoding="sync"
                   fetchpriority="high"
+                  width="40"
+                  height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
+                  alt="Client Avatar"
                 />
               </div>
             </div>
@@ -284,6 +282,8 @@
                 fetchpriority="high"
                 loading="eager"
                 decoding="sync"
+                width="800"
+                height="1200"
                 class="w-full h-full object-cover parallax-hero-img transform scale-110 absolute inset-0 z-10 opacity-0 native-fade-in"
                 onload="
                   this.classList.remove('opacity-0');
@@ -332,6 +332,8 @@
                       src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=400&fit=crop"
                       loading="eager"
                       fetchpriority="high"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover absolute inset-0 z-10 opacity-0 native-fade-in"
                       alt="Recent Project 1"
                       onload="this.classList.remove('opacity-0')"
@@ -349,6 +351,8 @@
                       src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&fit=crop"
                       loading="eager"
                       fetchpriority="high"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover absolute inset-0 z-10 opacity-0 native-fade-in"
                       alt="Recent Project 2"
                       onload="this.classList.remove('opacity-0')"
@@ -364,6 +368,8 @@
                     ></i>
                     <img
                       data-src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=400&fit=crop"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 3"
                     />
@@ -378,6 +384,8 @@
                     ></i>
                     <img
                       data-src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=400&fit=crop"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 4"
                     />
@@ -392,6 +400,8 @@
                     ></i>
                     <img
                       data-src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?q=80&w=400&fit=crop"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 5"
                     />
@@ -406,6 +416,8 @@
                     ></i>
                     <img
                       data-src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=400&fit=crop"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 6"
                     />
@@ -420,6 +432,8 @@
                     ></i>
                     <img
                       data-src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=400&fit=crop"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 7"
                     />
@@ -434,6 +448,8 @@
                     ></i>
                     <img
                       data-src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=400&fit=crop"
+                      width="400"
+                      height="300"
                       class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
                       alt="Recent Project 8"
                     />
@@ -566,7 +582,10 @@
               ></i>
               <img
                 data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop"
+                width="800"
+                height="800"
                 class="w-full h-full object-cover lazy-observe parallax-img-slow absolute inset-0 z-10"
+                alt="Filosofi Langitlangit.id"
               />
             </div>
           </div>
@@ -619,13 +638,14 @@
     <!-- Jejak Perjalanan (Stats Section) -->
     <section
       class="py-24 bg-brand-dark relative z-10 overflow-hidden border-y border-white/5"
+      id="stats-section"
     >
       <div class="max-w-6xl mx-auto px-6 relative z-10">
         <div
           class="flex flex-col md:flex-row justify-center items-center divide-y md:divide-y-0 md:divide-x divide-white/10 text-center gap-y-12 md:gap-y-0"
         >
           <!-- Stat 1: Design Project -->
-          <div class="flex-1 w-full py-6 md:py-0 gsap-fade-up">
+          <div class="flex-1 w-full py-6 md:py-0 gsap-stat-item">
             <h3
               class="gsap-counter text-5xl sm:text-6xl lg:text-[5.5rem] font-sans font-bold text-brand-blue tracking-tight mb-4"
               data-target="1048"
@@ -640,10 +660,7 @@
           </div>
 
           <!-- Stat 2: Interior Project -->
-          <div
-            class="flex-1 w-full py-6 md:py-0 gsap-fade-up"
-            style="transition-delay: 100ms"
-          >
+          <div class="flex-1 w-full py-6 md:py-0 gsap-stat-item">
             <h3
               class="gsap-counter text-5xl sm:text-6xl lg:text-[5.5rem] font-sans font-bold text-brand-tan tracking-tight mb-4"
               data-target="324"
@@ -658,10 +675,7 @@
           </div>
 
           <!-- Stat 3: Civil Project -->
-          <div
-            class="flex-1 w-full py-6 md:py-0 gsap-fade-up"
-            style="transition-delay: 200ms"
-          >
+          <div class="flex-1 w-full py-6 md:py-0 gsap-stat-item">
             <h3
               class="gsap-counter text-5xl sm:text-6xl lg:text-[5.5rem] font-sans font-bold text-brand-yellow tracking-tight mb-4"
               data-target="246"
@@ -827,7 +841,10 @@
           >
             <img
               data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop"
+              width="800"
+              height="600"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+              alt="Wabi Sabi House"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
@@ -849,7 +866,10 @@
           >
             <img
               data-src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1600&auto=format&fit=crop"
+              width="800"
+              height="600"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+              alt="Tropical Bali"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
@@ -871,7 +891,10 @@
           >
             <img
               data-src="https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1600&auto=format&fit=crop"
+              width="800"
+              height="600"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+              alt="Moroccan Riad"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
@@ -893,7 +916,10 @@
           >
             <img
               data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
+              width="800"
+              height="600"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+              alt="Modern Luxury"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
@@ -1291,7 +1317,7 @@
             </div>
           </div>
 
-          <!-- Paket Premium (Replicating Screenshot exactly) -->
+          <!-- Paket Premium -->
           <div
             class="gsap-price flex flex-col bg-brand-blue text-white rounded-[32px] shadow-2xl overflow-hidden transform lg:-translate-y-2 relative border border-brand-blue"
           >
@@ -1353,7 +1379,7 @@
             </div>
           </div>
 
-          <!-- Paket Per Ruangan (Replicating Screenshot exactly) -->
+          <!-- Paket Per Ruangan -->
           <div
             class="gsap-price flex flex-col bg-[#363430] text-white rounded-3xl shadow-xl overflow-hidden border border-[#4A4844] lg:mt-4"
           >
@@ -1544,6 +1570,8 @@
             <img
               src="https://iili.io/B2YU2Mg.png"
               alt="LangitLangit Logo"
+              width="150"
+              height="32"
               class="h-6 object-contain invert brightness-0 transition-transform duration-300 group-hover:scale-105"
               onerror="this.style.display = 'none'"
             />
@@ -1612,43 +1640,45 @@
         });
 
         // 2. HERO ANIMATIONS
-        gsap.from(".gsap-hero-text", {
-          y: 40,
-          opacity: 0,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: "power3.out",
-          delay: 0.2,
-        });
+        // Delayed init to give priority to main rendering (reduces TBT)
+        setTimeout(() => {
+          gsap.from(".gsap-hero-text", {
+            y: 40,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power3.out",
+          });
 
-        gsap.from(".gsap-hero-center-img", {
-          clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-          y: 40,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: 0.5,
-        });
+          gsap.from(".gsap-hero-center-img", {
+            clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+            y: 40,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 0.2,
+          });
 
-        gsap.from(".gsap-hero-right", {
-          x: 30,
-          opacity: 0,
-          duration: 1.2,
-          stagger: 0.2,
-          ease: "power3.out",
-          delay: 1,
-        });
+          gsap.from(".gsap-hero-right", {
+            x: 30,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "power3.out",
+            delay: 0.4,
+          });
 
-        gsap.to(".parallax-hero-img", {
-          yPercent: 15,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
+          gsap.to(".parallax-hero-img", {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "#hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+        }, 100);
 
         // 3. PARALLAX UMUM PADA GAMBAR ABOUT
         gsap.utils.toArray(".parallax-img-slow").forEach((img) => {
@@ -1659,7 +1689,7 @@
               trigger: img.parentElement,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1.2,
+              scrub: 1,
             },
           });
         });
@@ -1675,10 +1705,11 @@
             duration: 1.2,
             stagger: 0.2,
             ease: "power3.out",
+            force3D: true,
           },
         );
 
-        // 5. HORIZONTAL SCROLL PORTFOLIO (SMOOTH PINNING)
+        // 5. HORIZONTAL SCROLL PORTFOLIO (SMOOTH PINNING Tanpa Patah)
         const horizontalSection = document.querySelector(
           ".portfolio-horizontal-wrapper",
         );
@@ -1697,31 +1728,38 @@
             );
           }
 
-          // DEAD ZONE TRICK: Mencegah efek "patah" saat pin menempel dan lepas
-          const tl = gsap.timeline();
-
-          // Jeda singkat sebelum mulai geser (mencegah patahan saat nempel)
-          tl.to({}, { duration: 0.05 })
-            // Scroll horizontal utama
-            .to(horizontalContainer, {
-              x: getScrollAmount,
-              ease: "none",
-              duration: 1,
-            })
-            // Jeda singkat setelah selesai geser (mencegah patahan saat lepas)
-            .to({}, { duration: 0.05 });
+          // Dihapus pause time .to({}, {duration: 0.05}) agar animasi jalan terus dan ga nyangkut
+          const tween = gsap.to(horizontalContainer, {
+            x: getScrollAmount,
+            ease: "none", // pastikan linear ease
+          });
 
           ScrollTrigger.create({
             trigger: "#portfolio",
             start: "top top",
-            end: () => `+=${getScrollAmount() * -1 + 300}`, // Tambah ruang extra agar durasi scroll lebih rileks
+            end: () => `+=${getScrollAmount() * -1}`,
             pin: true,
-            animation: tl,
-            scrub: 1, // Diubah menjadi 1 agar sinkronisasi lebih akurat
-            anticipatePin: 1,
+            animation: tween,
+            scrub: 1.5, // ditingkatkan dikit agar mouse/trackpad smoothing lebih enak
+            anticipatePin: 1, // wajib agar pin awal ngga lompat
             invalidateOnRefresh: true,
           });
         }
+
+        // STAT ITEMS REVEAL (Dipercepat dan digabung trigger-nya agar muncul berbarengan)
+        gsap.fromTo(
+          ".gsap-stat-item",
+          { y: 30, opacity: 0 },
+          {
+            scrollTrigger: { trigger: "#stats-section", start: "top 85%" },
+            y: 0,
+            opacity: 1,
+            duration: 0.8, // Dipercepat
+            stagger: 0.15,
+            ease: "power3.out",
+            force3D: true,
+          },
+        );
 
         // 6. WORKFLOW TIMELINE ANIMATION
         gsap.to(".workflow-line", {
@@ -1729,7 +1767,7 @@
             trigger: "#workflow",
             start: "top 50%",
             end: "bottom 70%",
-            scrub: 1.2,
+            scrub: 1,
           },
           height: "100%",
           ease: "none",
@@ -1745,6 +1783,7 @@
               opacity: 1,
               duration: 1.2,
               ease: "power3.out",
+              force3D: true,
             },
           );
         });
@@ -1760,6 +1799,7 @@
               opacity: 1,
               duration: 1.2,
               ease: "power3.out",
+              force3D: true,
             },
           );
         });
@@ -1774,10 +1814,11 @@
             duration: 1.2,
             stagger: 0.15,
             ease: "power3.out",
+            force3D: true,
           },
         );
 
-        // 8. ANIMASI STAT COUNTER BARU
+        // 8. ANIMASI STAT COUNTER BARU (Dipercepat dan digabung)
         gsap.utils.toArray(".gsap-counter").forEach((counter) => {
           const target = parseInt(counter.getAttribute("data-target"));
           gsap.fromTo(
@@ -1785,15 +1826,14 @@
             { innerHTML: 0 },
             {
               innerHTML: target,
-              duration: 2.5,
+              duration: 2.0, // Dipercepat
               ease: "power3.out",
               snap: { innerHTML: 1 },
               scrollTrigger: {
-                trigger: counter.closest("section"),
-                start: "top 80%",
+                trigger: "#stats-section", // Menggunakan satu trigger untuk ke-3 counter
+                start: "top 85%",
               },
               onUpdate: function () {
-                // Formatting custom (1.048 format Indo)
                 if (target >= 1000) {
                   counter.innerHTML = Math.round(this.targets()[0].innerHTML)
                     .toLocaleString("id-ID")
@@ -1828,10 +1868,9 @@
             heroTrack.scrollLeft /
             (heroTrack.scrollWidth - heroTrack.clientWidth);
           const totalItems = 8;
-          const itemsVisible = 2;
-          const maxScrollIndex = totalItems - itemsVisible; // 6
+          const itemsVisible = window.innerWidth < 768 ? 1 : 2;
+          const maxScrollIndex = totalItems - itemsVisible;
 
-          // Handle edge cases where scrollRatio might exceed 0-1 bounds due to overscroll bounce
           let safeRatio = scrollRatio;
           if (safeRatio < 0) safeRatio = 0;
           if (safeRatio > 1) safeRatio = 1;
@@ -1840,11 +1879,8 @@
 
           const counterEl = document.getElementById("hero-carousel-counter");
           if (counterEl) {
-            // Jika di mobile, mungkin hanya terlihat 1 item
             if (window.innerWidth < 768) {
-              const mobileMaxScroll = totalItems - 1;
-              const mobileIndex = Math.round(safeRatio * mobileMaxScroll) + 1;
-              counterEl.innerText = `${mobileIndex}`;
+              counterEl.innerText = `${currentIndex}`;
             } else {
               counterEl.innerText = `${currentIndex}-${currentIndex + 1}`;
             }
