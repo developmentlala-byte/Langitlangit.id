@@ -85,7 +85,8 @@ const navbarComponent = `
       
       <!-- Left: Logo -->
       <a href="/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group z-10 w-auto lg:w-1/4">
-        <img src="https://iili.io/B2YSb8Q.png" alt="LangitLangit Logo" class="h-7 md:h-8 lg:h-9 w-auto transition-transform duration-300 group-hover:scale-105" onerror="this.style.display='none'" fetchpriority="high" loading="eager" decoding="sync" />
+        <img src="https://iili.io/B2YSb8Q.png" alt="LangitLangit Logo"               width="150"
+              height="32" class="h-7 md:h-8 lg:h-9 w-auto transition-transform duration-300 group-hover:scale-105" onerror="this.style.display='none'" fetchpriority="high" loading="eager" decoding="sync" />
         <span class="font-sans font-bold text-xl lg:text-2xl tracking-tight text-brand-dark hidden sm:inline-block">Langitlangit<span class="text-brand-yellow">.ID</span></span>
       </a>
 
