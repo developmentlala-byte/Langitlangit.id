@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Langit Langit.id | Architecture & Interior Design</title>
 
+    <!-- OPTIMASI 1: Preconnect & DNS Prefetch ke Server Gambar (Mempercepat LCP) -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://iili.io" crossorigin />
+    <link rel="dns-prefetch" href="https://iili.io" />
+
+    <!-- OPTIMASI 2: Preload Gambar Hero Utama -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
+      fetchpriority="high"
+    />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,11 +27,12 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
+    <!-- CATATAN: Untuk meraih skor A sempurna 100%, Anda wajib mengkompilasi Tailwind menggunakan CLI/NPM menjadi file style.css murni. Penggunaan CDN script ini adalah penyebab utama TBT 305ms di GTMetrix. -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Phosphor Icons (Di-defer agar tidak memblokir render HTML) -->
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <!-- Tailwind Configuration (Original Colors) -->
     <script>
@@ -58,7 +73,7 @@
         border-bottom: 1px solid rgba(219, 191, 160, 0.2);
       }
 
-      /* Advanced Smooth Image Loading */
+      /* Advanced Smooth Image Loading (Untuk gambar Below-The-Fold) */
       img.lazy-observe {
         opacity: 0;
         filter: blur(10px) brightness(1.05);
@@ -72,6 +87,20 @@
         opacity: 1;
         filter: blur(0) brightness(1);
         transform: scale(1);
+      }
+
+      /* Native Fast Loading Image transition (Untuk Smart Hero Loader) */
+      .native-fade-in {
+        transition: opacity 0.8s ease-in-out;
+      }
+
+      /* Loading Spinner Positioning */
+      .img-loading-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
       }
 
       /* Marquee Ticker */
@@ -102,18 +131,15 @@
         scrollbar-width: none;
       }
 
-      /* Custom selection */
       ::selection {
         background-color: #fed818;
         color: #363430;
       }
 
-      /* Dashed divider for Hero */
       .border-dashed-custom {
         border-bottom: 1px dashed rgba(54, 52, 48, 0.2);
       }
 
-      /* Glassmorphism utility */
       .glass-card {
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(20px);
@@ -181,47 +207,66 @@
                 Klien yang telah mempercayakan desain ruang impiannya kepada
                 kami.
               </p>
+              <!-- Avatar di Atas Lipatan: Menggunakan Native Load, Tanpa Script JS agar cepat -->
               <div class="flex -space-x-3">
                 <img
-                  data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
-                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
                 />
                 <img
-                  data-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
-                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
                 />
                 <img
-                  data-src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop"
-                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
                 />
                 <img
-                  data-src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop"
-                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm lazy-observe"
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
+                  class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
                 />
               </div>
             </div>
           </div>
 
-          <!-- Column 2: Tall Vertical Image (Center) with Skeleton Loader -->
+          <!-- Column 2: Tall Vertical Image (Center) -->
           <div
             class="lg:col-span-4 h-[400px] md:h-[550px] lg:h-auto min-h-[400px] w-full order-1 lg:order-2"
           >
+            <!-- SMART HERO LOADER: Spinner background jalan, tapi gambar langsung ditarik native HTML (Solusi LCP Hijau GTMetrix) -->
             <div
-              class="w-full h-full rounded-[32px] overflow-hidden relative shadow-2xl gsap-hero-center-img bg-gray-200 animate-pulse flex items-center justify-center img-wrapper-loader"
+              class="w-full h-full rounded-[32px] overflow-hidden relative shadow-2xl gsap-hero-center-img bg-gray-200 flex items-center justify-center"
             >
-              <!-- Icon Spinner untuk Skeleton -->
               <i
-                class="ph ph-spinner-gap animate-spin text-4xl text-gray-400 absolute img-loading-spinner"
+                class="ph ph-spinner-gap animate-spin text-4xl text-gray-400 absolute z-0"
               ></i>
 
-              <!-- Gambar Asli -->
               <img
-                data-src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
                 alt="Modern Architecture"
-                class="w-full h-full object-cover parallax-hero-img transform scale-110 lazy-observe absolute inset-0 z-10"
+                fetchpriority="high"
+                loading="eager"
+                decoding="sync"
+                class="w-full h-full object-cover parallax-hero-img transform scale-110 absolute inset-0 z-10 opacity-0 native-fade-in"
+                onload="
+                  this.classList.remove('opacity-0');
+                  this.previousElementSibling.style.display = 'none';
+                  this.parentElement.classList.remove('bg-gray-200');
+                "
               />
 
-              <!-- Gradient Overlay -->
               <div
                 class="absolute inset-0 bg-gradient-to-t from-brand-dark/20 to-transparent z-20 pointer-events-none"
               ></div>
@@ -247,40 +292,45 @@
 
               <!-- FUNCTIONAL CAROUSEL TRACK -->
               <div class="relative w-full">
-                <!-- Container Carousel: Flex dengan gap dan overflow-x-auto. Snap-mandatory untuk penggulungan mulus -->
                 <div
                   id="hero-carousel-track"
                   class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar w-full pb-2"
                 >
-                  <!-- Card 1 -->
+                  <!-- Card 1 (Dibuat Native Load krn Above Fold) -->
                   <div
-                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
+                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center"
                   >
                     <i
-                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute img-loading-spinner"
+                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute"
                     ></i>
                     <img
-                      data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=400&fit=crop"
-                      class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
+                      src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=400&fit=crop"
+                      loading="eager"
+                      fetchpriority="high"
+                      class="w-full h-full object-cover absolute inset-0 z-10 opacity-0 native-fade-in"
                       alt="Recent Project 1"
+                      onload="this.classList.remove('opacity-0')"
                     />
                   </div>
 
-                  <!-- Card 2 -->
+                  <!-- Card 2 (Dibuat Native Load krn Above Fold) -->
                   <div
-                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
+                    class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center"
                   >
                     <i
-                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute img-loading-spinner"
+                      class="ph ph-spinner-gap animate-spin text-2xl text-gray-400 absolute"
                     ></i>
                     <img
-                      data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&fit=crop"
-                      class="w-full h-full object-cover lazy-observe absolute inset-0 z-10"
+                      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&fit=crop"
+                      loading="eager"
+                      fetchpriority="high"
+                      class="w-full h-full object-cover absolute inset-0 z-10 opacity-0 native-fade-in"
                       alt="Recent Project 2"
+                      onload="this.classList.remove('opacity-0')"
                     />
                   </div>
 
-                  <!-- Card 3 -->
+                  <!-- Card 3 (Below the fold/tersembunyi -> Tetap Lazy Load) -->
                   <div
                     class="w-[200px] shrink-0 snap-start aspect-[4/3] rounded-xl overflow-hidden shadow-sm relative bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
                   >
@@ -366,7 +416,7 @@
                 </div>
               </div>
 
-              <!-- Carousel Controls (Sama persis dengan Screenshot) -->
+              <!-- Carousel Controls (Responsif dan sama persis Screenshot) -->
               <div class="flex items-center gap-6 mt-4">
                 <div class="flex items-center gap-5 text-gray-400">
                   <button
@@ -1166,6 +1216,7 @@
         </div>
 
         <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Paket Sipil (White Card) -->
           <div
             class="gsap-price flex flex-col bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden lg:mt-4"
           >
@@ -1215,9 +1266,11 @@
             </div>
           </div>
 
+          <!-- Paket Premium (Replicating Screenshot exactly) -->
           <div
             class="gsap-price flex flex-col bg-brand-blue text-white rounded-[32px] shadow-2xl overflow-hidden transform lg:-translate-y-2 relative border border-brand-blue"
           >
+            <!-- Ribbon -->
             <div
               class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-[10px] font-bold uppercase tracking-wider px-10 py-1.5 rotate-45 translate-x-8 translate-y-5 shadow-sm"
             >
@@ -1275,6 +1328,7 @@
             </div>
           </div>
 
+          <!-- Paket Per Ruangan (Replicating Screenshot exactly) -->
           <div
             class="gsap-price flex flex-col bg-[#363430] text-white rounded-3xl shadow-xl overflow-hidden border border-[#4A4844] lg:mt-4"
           >
@@ -1321,6 +1375,7 @@
           </div>
         </div>
 
+        <!-- EXPLICIT REFUNDABLE INFO (Design Focus + Mitra Sipil) -->
         <div
           class="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-brand-blue/5 to-transparent rounded-3xl p-6 md:p-8 border border-brand-blue/20 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-sm gsap-fade-up"
         >
