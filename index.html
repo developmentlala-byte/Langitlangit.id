@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Langit Langit.id | Architecture & Interior Design</title>
 
-    <!-- OPTIMASI 1: Preconnect & DNS Prefetch (Mempercepat Resolusi Server) -->
+    <!-- OPTIMASI 1: Preconnect & DNS Prefetch ke Server Gambar (Mempercepat LCP) -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://iili.io" crossorigin />
     <link rel="dns-prefetch" href="https://iili.io" />
 
-    <!-- OPTIMASI 2: Preload Gambar Hero Utama (Meningkatkan LCP) -->
+    <!-- OPTIMASI 2: Preload Gambar Hero Utama -->
     <link
       rel="preload"
       as="image"
@@ -72,10 +72,7 @@
         border-bottom: 1px solid rgba(219, 191, 160, 0.2);
       }
 
-      /* OPTIMASI 3: Hardware Acceleration.
-       * Dihapus "will-change" masif karena membebani memori GPU (penyebab performa turun).
-       * Hanya digunakan pada container horizontal yang paling berat.
-       */
+      /* OPTIMASI 3: Hardware Acceleration Terfokus (Mencegah Overload GPU) */
       .gsap-hero-text,
       .gsap-hero-center-img,
       .gsap-hero-right,
@@ -107,6 +104,11 @@
         opacity: 1;
         filter: blur(0) brightness(1);
         transform: scale(1) translateZ(0);
+      }
+
+      /* Native Fast Loading Image transition (Untuk Smart Hero Loader) */
+      .native-fade-in {
+        transition: opacity 0.8s ease-in-out;
       }
 
       /* Loading Spinner Positioning */
@@ -194,21 +196,25 @@
                 Dreams
               </h1>
               <p
-                class="gsap-hero-text text-gray-500 text-lg leading-relaxed mb-8 max-w-sm"
+                class="gsap-hero-text text-gray-500 text-lg leading-relaxed mb-10 lg:mb-6 max-w-sm"
               >
                 Kami mengubah visi berani menjadi arsitektur modern yang terasa
                 hangat, fungsional, dan menginspirasi. Setiap proyek memadukan
                 kreativitas dengan presisi yang tahan lama.
               </p>
-              <a
-                href="#contact"
-                class="gsap-hero-text inline-flex items-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-full font-medium hover:bg-brand-blue transition-all duration-300 group shadow-lg"
-              >
-                Mulai proyek Anda
-                <i
-                  class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"
-                ></i>
-              </a>
+
+              <!-- OPTIMASI: Bungkus Div khusus untuk GSAP, pisahkan dari transisi Tailwind di tombol -->
+              <div class="gsap-hero-text pt-2">
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-full font-medium hover:bg-brand-blue transition-colors duration-300 group shadow-lg"
+                >
+                  Mulai proyek Anda
+                  <i
+                    class="ph ph-arrow-right group-hover:translate-x-1 transition-transform duration-300"
+                  ></i>
+                </a>
+              </div>
             </div>
 
             <div class="gsap-hero-text mt-16 lg:mt-auto">
@@ -223,13 +229,13 @@
                 Klien yang telah mempercayakan desain ruang impiannya kepada
                 kami.
               </p>
-
-              <!-- OPTIMASI 4: Avatars diset Lazy, agar bandwidth fokus pada Hero Image Utama (LCP) -->
+              <!-- Avatar di Atas Lipatan: Menggunakan Native Load, Atribut Width/Height eksplisit untuk mencegah CLS -->
               <div class="flex -space-x-3">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -237,8 +243,9 @@
                 />
                 <img
                   src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -246,8 +253,9 @@
                 />
                 <img
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop"
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -255,8 +263,9 @@
                 />
                 <img
                   src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop"
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
+                  fetchpriority="high"
                   width="40"
                   height="40"
                   class="w-10 h-10 rounded-full border-2 border-[#FAFAFA] object-cover shadow-sm"
@@ -270,10 +279,14 @@
           <div
             class="lg:col-span-4 h-[400px] md:h-[550px] lg:h-auto min-h-[400px] w-full order-1 lg:order-2"
           >
-            <!-- OPTIMASI LCP: Tidak ada class opacity-0 atau native-fade-in. Gambar dipaksa tampil seketika saat diunduh -->
+            <!-- SMART HERO LOADER: LCP Optimized -->
             <div
               class="w-full h-full rounded-[32px] overflow-hidden relative shadow-2xl gsap-hero-center-img bg-gray-200 flex items-center justify-center"
             >
+              <i
+                class="ph ph-spinner-gap animate-spin text-4xl text-gray-400 absolute z-0"
+              ></i>
+
               <img
                 src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
                 alt="Modern Architecture"
@@ -282,8 +295,12 @@
                 decoding="sync"
                 width="800"
                 height="1200"
-                class="w-full h-full object-cover parallax-hero-img transform scale-110 absolute inset-0 z-10"
-                onload="this.parentElement.classList.remove('bg-gray-200')"
+                class="w-full h-full object-cover parallax-hero-img transform scale-110 absolute inset-0 z-10 opacity-0 native-fade-in"
+                onload="
+                  this.classList.remove('opacity-0');
+                  this.previousElementSibling.style.display = 'none';
+                  this.parentElement.classList.remove('bg-gray-200');
+                "
               />
 
               <div
@@ -506,7 +523,7 @@
           ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           <span>LOMBOK</span
           ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-          <!-- Duplicate for seamless loop -->
+
           <span>JAKARTA</span
           ><span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           <span>BALI</span
@@ -563,7 +580,7 @@
               class="w-24 h-24 bg-brand-yellow rounded-full absolute -top-10 -left-10 -z-10 animate-pulse"
             ></div>
             <div
-              class="relative w-full aspect-square rounded-full overflow-hidden shadow-2xl border-8 border-white bg-gray-200 flex items-center justify-center img-wrapper-loader animate-pulse"
+              class="relative w-full aspect-square rounded-full overflow-hidden shadow-2xl border-8 border-white bg-gray-200 animate-pulse flex items-center justify-center img-wrapper-loader"
             >
               <i
                 class="ph ph-spinner-gap animate-spin text-5xl text-gray-400 absolute img-loading-spinner"
@@ -715,7 +732,7 @@
           <div class="lg:col-span-8 flex flex-col gap-6 lg:gap-8">
             <!-- Service 1 (Hover Blue) -->
             <div
-              class="gsap-service-card bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-blue/30 hover:shadow-xl transition-all duration-300"
+              class="gsap-service-card bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-blue/30 hover:shadow-xl transition-colors transition-shadow duration-300"
             >
               <div
                 class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-6 md:mb-8 border-b border-gray-100 pb-6 md:pb-8"
@@ -741,7 +758,7 @@
 
             <!-- Service 2 (Hover Tan) -->
             <div
-              class="gsap-service-card bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-tan/40 hover:shadow-xl transition-all duration-300"
+              class="gsap-service-card bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-tan/40 hover:shadow-xl transition-colors transition-shadow duration-300"
             >
               <div
                 class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-6 md:mb-8 border-b border-gray-100 pb-6 md:pb-8"
@@ -768,7 +785,7 @@
 
             <!-- Service 3 (Hover Yellow) -->
             <div
-              class="gsap-service-card bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-yellow/50 hover:shadow-xl transition-all duration-300"
+              class="gsap-service-card bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-gray-100 group hover:border-brand-yellow/50 hover:shadow-xl transition-colors transition-shadow duration-300"
             >
               <div
                 class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-6 md:mb-8 border-b border-gray-100 pb-6 md:pb-8"
@@ -929,7 +946,7 @@
       </div>
     </section>
 
-    <!-- Standar Tahapan Kerja -->
+    <!-- Standar Tahapan Kerja (Circular Redesign) -->
     <section
       id="workflow"
       class="py-24 lg:py-32 bg-white relative overflow-hidden"
@@ -954,10 +971,12 @@
         <div
           class="hidden lg:flex relative w-full max-w-[850px] aspect-square mx-auto items-center justify-center gsap-fade-up"
         >
+          <!-- Circular Track / Dashed Line -->
           <div
             class="absolute w-[450px] h-[450px] border-[2px] border-dashed border-gray-200 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none"
           ></div>
 
+          <!-- Center Badge -->
           <div
             class="absolute z-20 bg-brand-dark text-white px-8 py-4 rounded-full flex items-center gap-3 shadow-[0_10px_30px_rgba(54,52,48,0.3)] hover:scale-105 transition-transform duration-500 cursor-default"
           >
@@ -965,12 +984,13 @@
             <span class="font-bold text-lg tracking-wide">Metodologi Lala</span>
           </div>
 
-          <!-- Step 1 -->
+          <!-- Nodes -->
+          <!-- Step 1 (Top) -->
           <div
             class="absolute top-[5%] left-1/2 -translate-x-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
             <div
-              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform duration-300"
             >
               <i class="ph-light ph-users"></i>
             </div>
@@ -982,12 +1002,12 @@
             </p>
           </div>
 
-          <!-- Step 2 -->
+          <!-- Step 2 (Right) -->
           <div
             class="absolute top-1/2 right-[2%] -translate-y-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
             <div
-              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-tan text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-tan text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform duration-300"
             >
               <i class="ph-light ph-compass-tool"></i>
             </div>
@@ -999,12 +1019,12 @@
             </p>
           </div>
 
-          <!-- Step 3 -->
+          <!-- Step 3 (Bottom) -->
           <div
             class="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
             <div
-              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-yellow text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-yellow text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform duration-300"
             >
               <i class="ph-light ph-cube"></i>
             </div>
@@ -1016,12 +1036,12 @@
             </p>
           </div>
 
-          <!-- Step 4 -->
+          <!-- Step 4 (Left) -->
           <div
             class="absolute top-1/2 left-[2%] -translate-y-1/2 w-64 text-center z-10 flex flex-col items-center"
           >
             <div
-              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-dark text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              class="w-16 h-16 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-dark text-2xl mb-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform duration-300"
             >
               <i class="ph-light ph-blueprint"></i>
             </div>
@@ -1033,6 +1053,7 @@
             </p>
           </div>
 
+          <!-- Connecting Arrows -->
           <div
             class="absolute top-[28%] right-[28%] text-gray-300 rotate-[45deg] text-3xl"
           >
@@ -1163,6 +1184,7 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-6 lg:gap-8 gsap-fade-up">
+          <!-- Trust Card 1 -->
           <div
             class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
           >
@@ -1185,6 +1207,7 @@
             >
           </div>
 
+          <!-- Trust Card 2 -->
           <div
             class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
           >
@@ -1203,6 +1226,7 @@
             </p>
           </div>
 
+          <!-- Trust Card 3 -->
           <div
             class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
           >
@@ -1581,12 +1605,10 @@
       document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Membungkus script GSAP berat di dalam requestAnimationFrame + setTimeout
+        // Membungkus script GSAP berat di dalam requestAnimationFrame
         // untuk mengosongkan antrean eksekusi Main Thread dan menurunkan TBT GTMetrix.
         requestAnimationFrame(() => {
-          setTimeout(() => {
-            initOptimizedAnimations();
-          }, 50);
+          initOptimizedAnimations();
         });
 
         // 1. ADVANCED LAZY LOADING USING INTERSECTION OBSERVER WITH SKELETON LOADER
