@@ -85,6 +85,14 @@
         transform: translateZ(0); /* 3D acceleration ringan */
       }
 
+      /* OPTIMASI TAMBAHAN: Mencegah FOUC (Flash of Unstyled Content) & Gambar Loncat di awal load */
+      .gsap-hero-text,
+      .gsap-hero-center-img,
+      .gsap-hero-right {
+        visibility: hidden;
+        opacity: 0;
+      }
+
       .portfolio-horizontal-container {
         will-change: transform;
         transform: translateZ(0);
@@ -196,7 +204,7 @@
                 Dreams
               </h1>
               <p
-                class="gsap-hero-text text-gray-500 text-lg leading-relaxed mb-10 lg:mb-6 max-w-sm"
+                class="gsap-hero-text text-gray-500 text-lg leading-relaxed mb-10 lg:mb-5 max-w-sm"
               >
                 Kami mengubah visi berani menjadi arsitektur modern yang terasa
                 hangat, fungsional, dan menginspirasi. Setiap proyek memadukan
@@ -204,7 +212,7 @@
               </p>
 
               <!-- OPTIMASI: Bungkus Div khusus untuk GSAP, pisahkan dari transisi Tailwind di tombol -->
-              <div class="gsap-hero-text pt-2">
+              <div class="gsap-hero-text pt-2 lg:pb-4 lg:pt-0">
                 <a
                   href="#contact"
                   class="inline-flex items-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-full font-medium hover:bg-brand-blue transition-colors duration-300 group shadow-lg"
@@ -217,7 +225,7 @@
               </div>
             </div>
 
-            <div class="gsap-hero-text mt-16 lg:mt-auto">
+            <div class="gsap-hero-text mt-12 lg:mt-16 lg:mt-auto">
               <div
                 class="text-4xl font-bold text-brand-dark tracking-tight mb-2"
               >
@@ -841,15 +849,16 @@
         <div
           class="portfolio-horizontal-container flex gap-6 md:gap-8 px-6 absolute top-0 left-0 h-full items-center no-scrollbar w-max"
         >
-          <div
-            class="w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          <a
+            href="/themes/wabi-sabi"
+            class="block w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
           >
             <img
               data-src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop"
               width="800"
               height="600"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
-              alt="Wabi Sabi House"
+              alt="Wabi Sabi"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
@@ -861,13 +870,14 @@
                 Portfolio
               </p>
               <h3 class="font-serif text-2xl md:text-3xl font-bold">
-                Wabi Sabi House
+                Wabi Sabi
               </h3>
             </div>
-          </div>
+          </a>
 
-          <div
-            class="w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          <a
+            href="/themes/tropical"
+            class="block w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
           >
             <img
               data-src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1600&auto=format&fit=crop"
@@ -889,17 +899,42 @@
                 Tropical Bali
               </h3>
             </div>
-          </div>
+          </a>
 
-          <div
-            class="w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          <a
+            href="/themes/japandi"
+            class="block w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          >
+            <img
+              data-src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop"
+              width="800"
+              height="600"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+              alt="Japandi"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
+            ></div>
+            <div class="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Portfolio
+              </p>
+              <h3 class="font-serif text-2xl md:text-3xl font-bold">Japandi</h3>
+            </div>
+          </a>
+
+          <a
+            href="/themes/mediteranian"
+            class="block w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
           >
             <img
               data-src="https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1600&auto=format&fit=crop"
               width="800"
               height="600"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
-              alt="Moroccan Riad"
+              alt="Mediteranian"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
@@ -911,13 +946,40 @@
                 Portfolio
               </p>
               <h3 class="font-serif text-2xl md:text-3xl font-bold">
-                Moroccan Riad
+                Mediteranian
               </h3>
             </div>
-          </div>
+          </a>
 
-          <div
-            class="w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          <a
+            href="/themes/industrial"
+            class="block w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
+          >
+            <img
+              data-src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop"
+              width="800"
+              height="600"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 lazy-observe"
+              alt="Industrial"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"
+            ></div>
+            <div class="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+              <p
+                class="text-brand-tan text-xs font-bold tracking-widest uppercase mb-2"
+              >
+                Portfolio
+              </p>
+              <h3 class="font-serif text-2xl md:text-3xl font-bold">
+                Industrial
+              </h3>
+            </div>
+          </a>
+
+          <a
+            href="/themes/modern/modern.html"
+            class="block w-[85vw] md:w-[45vw] lg:w-[32vw] h-[40vh] md:h-[45vh] relative rounded-3xl overflow-hidden group shrink-0 shadow-2xl border border-white/10"
           >
             <img
               data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
@@ -939,7 +1001,7 @@
                 Modern Luxury
               </h3>
             </div>
-          </div>
+          </a>
 
           <div class="w-[10vw] h-10 shrink-0"></div>
         </div>
@@ -1266,7 +1328,7 @@
           </h2>
           <p class="text-gray-500 text-base md:text-lg">
             Setiap rumah dimulai dari perencanaan yang matang. Pilih skala yang
-            sesuai dengan tingkat kebutuhan detail Anda.
+            sesuhi dengan tingkat kebutuhan detail Anda.
           </p>
         </div>
 
@@ -1565,10 +1627,10 @@
         >
           <a
             href="/"
-            class="flex-shrink-0 flex items-center gap-2 cursor-pointer group"
+            class="flex-shrink-0 flex items-center lg:flex-row flex-col gap-2 cursor-pointer group"
           >
             <img
-              src="https://iili.io/B2YU2Mg.png"
+              src="https://iili.io/B2YSb8Q.png"
               alt="LangitLangit Logo"
               width="150"
               height="32"
@@ -1646,32 +1708,52 @@
       });
 
       function initOptimizedAnimations() {
-        // 2. HERO ANIMATIONS
-        gsap.from(".gsap-hero-text", {
-          y: 40,
-          opacity: 0,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: "power3.out",
-        });
+        // 2. HERO ANIMATIONS - Redesigned for Premium Smoothness & FOUC Prevention
+        // Menggunakan fromTo dan autoAlpha memastikan 0 FOUC (elemen kedip di awal)
 
-        gsap.from(".gsap-hero-center-img", {
-          clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-          y: 40,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: 0.2,
-        });
+        gsap.fromTo(
+          ".gsap-hero-text",
+          { y: 40, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power3.out",
+          },
+        );
 
-        gsap.from(".gsap-hero-right", {
-          x: 30,
-          opacity: 0,
-          duration: 1.2,
-          stagger: 0.2,
-          ease: "power3.out",
-          delay: 0.4,
-        });
+        // BEST PRACTICE: Menggunakan inset() alih-alih polygon() untuk efisiensi GPU
+        // dan pergerakan reveal clip-path yang sangat mulus tanpa patah di akhir.
+        gsap.fromTo(
+          ".gsap-hero-center-img",
+          {
+            clipPath: "inset(100% 0% 0% 0%)",
+            y: 40,
+            autoAlpha: 0,
+          },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            y: 0,
+            autoAlpha: 1,
+            duration: 1.5,
+            ease: "power4.out", // Deselerasi yang lebih mulus dan elegan
+            delay: 0.2,
+          },
+        );
+
+        gsap.fromTo(
+          ".gsap-hero-right",
+          { x: 30, autoAlpha: 0 },
+          {
+            x: 0,
+            autoAlpha: 1,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "power3.out",
+            delay: 0.4,
+          },
+        );
 
         gsap.to(".parallax-hero-img", {
           yPercent: 15,
